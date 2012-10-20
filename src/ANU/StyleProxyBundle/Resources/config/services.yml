@@ -1,0 +1,7 @@
+parameters:
+#    anu_style_proxy.example.class: ANU\StyleProxyBundle\Example
+
+services:
+#    anu_style_proxy.example:
+#        class: %anu_style_proxy.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
