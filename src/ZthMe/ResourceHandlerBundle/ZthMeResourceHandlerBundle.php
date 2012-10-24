@@ -1,6 +1,6 @@
 <?php
 
-namespace ZthMe\Bundle\ResourceHandlerBundle;
+namespace ZthMe\ResourceHandlerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

@@ -6,7 +6,7 @@
 
     <!--
     <parameters>
-        <parameter key="zth_me_asset_mirror.example.class">ZthMe\Bundle\AssetMirrorBundle\Example</parameter>
+        <parameter key="zth_me_asset_mirror.example.class">ZthMe\AssetMirrorBundle\Example</parameter>
     </parameters>
 
     <services>

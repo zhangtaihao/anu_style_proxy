@@ -1,6 +1,6 @@
 <?php
 
-namespace ZthMe\Bundle\AssetMirrorBundle;
+namespace ZthMe\AssetMirrorBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

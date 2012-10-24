@@ -1,6 +1,6 @@
 <?php
 
-namespace ZthMe\Bundle\ResourceHandlerBundle\Tests\Controller;
+namespace ZthMe\ResourceHandlerBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

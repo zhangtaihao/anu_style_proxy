@@ -1,6 +1,6 @@
 <?php
 
-namespace ZthMe\Bundle\AssetMirrorBundle\Tests\Controller;
+namespace ZthMe\AssetMirrorBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

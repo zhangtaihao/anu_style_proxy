@@ -1,6 +1,6 @@
 <?php
 
-namespace ZthMe\Bundle\AssetMirrorBundle\DependencyInjection;
+namespace ZthMe\AssetMirrorBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
