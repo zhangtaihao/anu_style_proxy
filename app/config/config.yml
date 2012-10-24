@@ -63,3 +63,15 @@ assetic:
 #    username:  %mailer_user%
 #    password:  %mailer_password%
 #    spool:     { type: memory }
+
+# Doctrine cache configuration
+liip_doctrine_cache:
+    namespaces:
+        default:
+            namespace:  %app_cache_namespace%
+            type:       %app_cache_type%
+            host:       %app_cache_host%
+            port:       %app_cache_port%
+            id:         %app_cache_id%
+            directory:  %app_cache_directory%
+            extension:  %app_cache_extension%

@@ -4,5 +4,17 @@ parameters:
     backend_asset_server:   ~
     cache_backend_assets:   ~
 
+    # Application cache configuration.
+    # See http://github.com/liip/LiipDoctrineCacheBundle for how to configure
+    # the cache layer. Note that the default cache provider 'array' is not
+    # cached across requests.
+    app_cache_namespace:    ~
+    app_cache_type:         array
+    app_cache_host:         ~
+    app_cache_port:         ~
+    app_cache_id:           ~
+    app_cache_directory:    ~
+    app_cache_extension:    ~
+
     locale:                 en
     secret:                 ThisTokenIsNotSoSecretChangeIt
