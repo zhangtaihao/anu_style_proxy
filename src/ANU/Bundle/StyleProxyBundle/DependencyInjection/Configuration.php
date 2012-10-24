@@ -19,16 +19,11 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('anu_style_proxy');
+        $group = $rootNode->children();
 
-        $rootNode
-            ->children()
-                ->scalarNode('proxy_mode')
-                    ->isRequired()
-                    ->validate()
-                        ->ifNotInArray(array('style', 'asset', 'combined'))
-                        ->thenInvalid('Invalid proxy mode "%s"')
-                    ->end()
-                ->end()
+        $group->enumNode('proxy_mode')
+            ->values(array('style', 'asset', 'combined'))
+            ->treatNullLike('combined')
             ->end();
 
         return $treeBuilder;
