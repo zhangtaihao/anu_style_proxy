@@ -1,5 +1,5 @@
 parameters:
-#    anu_style_proxy.example.class: ANU\StyleProxyBundle\Example
+#    anu_style_proxy.example.class: ANU\Bundle\StyleProxyBundle\Example
 
 services:
 #    anu_style_proxy.example:

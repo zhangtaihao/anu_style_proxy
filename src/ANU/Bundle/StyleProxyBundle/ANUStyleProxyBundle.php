@@ -1,6 +1,6 @@
 <?php
 
-namespace ANU\StyleProxyBundle;
+namespace ANU\Bundle\StyleProxyBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

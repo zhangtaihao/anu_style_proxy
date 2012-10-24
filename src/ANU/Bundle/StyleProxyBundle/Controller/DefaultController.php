@@ -1,6 +1,6 @@
 <?php
 
-namespace ANU\StyleProxyBundle\Controller;
+namespace ANU\Bundle\StyleProxyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

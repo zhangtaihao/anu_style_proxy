@@ -1,6 +1,6 @@
 <?php
 
-namespace ANU\StyleProxyBundle\DependencyInjection;
+namespace ANU\Bundle\StyleProxyBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

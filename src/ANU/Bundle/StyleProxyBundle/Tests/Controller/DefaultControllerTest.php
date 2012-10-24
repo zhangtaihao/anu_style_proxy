@@ -1,6 +1,6 @@
 <?php
 
-namespace ANU\StyleProxyBundle\Tests\Controller;
+namespace ANU\Bundle\StyleProxyBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
