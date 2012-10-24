@@ -1,6 +1,6 @@
 anu_style_proxy_homepage:
     pattern:  /
-    defaults: { _controller: anu_style_proxy.default_controller.default:index }
+    defaults: { _controller: anu_style_proxy.default_controller:index }
 anu_style_proxy_style_server:
     pattern:  /include.php
     defaults: { _controller: anu_style_proxy.style_server_controller:include }
