@@ -18,7 +18,8 @@
         "sensio/generator-bundle": "2.1.*",
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
-        "liip/doctrine-cache-bundle": "dev-master"
+        "liip/doctrine-cache-bundle": "dev-master",
+        "natxet/CssMin": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

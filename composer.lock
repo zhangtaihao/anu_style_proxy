@@ -1,5 +1,5 @@
 {
-    "hash": "d40806ea0d1c68233f2b3c6bb058b8eb",
+    "hash": "94b46d7ad03c7511eb46fd2274ff52db",
     "packages": [
         {
             "name": "doctrine/common",
@@ -589,7 +589,6 @@
                 "symfony/symfony": ">=2.0",
                 "doctrine/common": ">=2.2"
             },
-            "time": "1347620900",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -610,7 +609,8 @@
             "keywords": [
                 "Symfony2",
                 "cache"
-            ]
+            ],
+            "time": "1347620900"
         },
         {
             "name": "monolog/monolog",
@@ -666,6 +666,48 @@
             "keywords": [
                 "log",
                 "logging"
+            ]
+        },
+        {
+            "name": "natxet/CssMin",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/natxet/CssMin.git",
+                "reference": "ef023b701821e73858f6af457f5fdef96cf9cd4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/natxet/CssMin/zipball/ef023b701821e73858f6af457f5fdef96cf9cd4d",
+                "reference": "ef023b701821e73858f6af457f5fdef96cf9cd4d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0"
+            },
+            "time": "1329902120",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "CssMin": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Scylla",
+                    "email": "joe.scylla@gmail.com",
+                    "homepage": "https://profiles.google.com/joe.scylla"
+                }
+            ],
+            "description": "Minifying CSS",
+            "homepage": "http://code.google.com/p/cssmin/",
+            "keywords": [
+                "css",
+                "minify"
             ]
         },
         {
@@ -1225,6 +1267,7 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "liip/doctrine-cache-bundle": 20
+        "liip/doctrine-cache-bundle": 20,
+        "natxet/cssmin": 20
     }
 }
