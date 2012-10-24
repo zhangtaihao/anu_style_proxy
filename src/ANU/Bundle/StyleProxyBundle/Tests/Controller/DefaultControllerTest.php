@@ -6,12 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
+    /**
+     * Front page is accessible.
+     */
     public function testIndex()
     {
         $client = static::createClient();
-
-        $crawler = $client->request('GET', '/hello/Fabien');
-
-        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() > 0);
+        $client->request('GET', '/');
+        $this->assertTrue($client->getResponse()->getStatusCode() == 200);
     }
 }
