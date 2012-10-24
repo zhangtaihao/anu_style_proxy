@@ -620,7 +620,6 @@ class SymfonyRequirements extends RequirementCollection
 
         $this->addPhpIniRecommendation('session.auto_start', false);
 
-/*
         $this->addRecommendation(
             class_exists('PDO'),
             'PDO should be installed',
@@ -635,6 +634,5 @@ class SymfonyRequirements extends RequirementCollection
                 'Install <strong>PDO drivers</strong> (mandatory for Doctrine).'
             );
         }
-*/
     }
 }
