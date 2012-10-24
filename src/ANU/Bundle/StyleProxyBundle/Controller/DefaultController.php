@@ -8,6 +8,8 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('ANUStyleProxyBundle:Default:index.html.twig');
+        return $this->render('ANUStyleProxyBundle:Default:index.html.twig', array(
+            'message' => $this->container->getParameter('anu_style_proxy.placeholder_message'),
+        ));
     }
 }
