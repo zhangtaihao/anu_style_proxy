@@ -11,9 +11,17 @@ services:
         class: %anu_style_proxy.cache.class%
     anu_style_proxy.default_controller:
         class: %anu_style_proxy.default_controller.class%
+        calls:
+            - [ setContainer, [ @service_container ] ]
     anu_style_proxy.style_server_controller:
         class: %anu_style_proxy.style_server_controller.class%
+        calls:
+            - [ setContainer, [ @service_container ] ]
     anu_style_proxy.asset_server_controller:
         class: %anu_style_proxy.asset_server_controller.class%
+        calls:
+            - [ setContainer, [ @service_container ] ]
     anu_style_proxy.asset_manager_controller:
         class: %anu_style_proxy.asset_manager_controller.class%
+        calls:
+            - [ setContainer, [ @service_container ] ]
