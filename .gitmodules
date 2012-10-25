@@ -1,0 +1,6 @@
+[submodule "src/ANU/Bundle/ResourceMirrorBundle"]
+	path = src/ANU/Bundle/ResourceMirrorBundle
+	url = git://github.com/zhangtaihao/ANUResourceMirrorBundle.git
+[submodule "src/ANU/Bundle/ResourceHandlerBundle"]
+	path = src/ANU/Bundle/ResourceHandlerBundle
+	url = git://github.com/zhangtaihao/ANUResourceHandlerBundle.git
