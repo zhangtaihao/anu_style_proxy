@@ -1,0 +1,6 @@
+[submodule "src/ZthMe/AssetMirrorBundle"]
+	path = src/ZthMe/AssetMirrorBundle
+	url = https://github.com/zhangtaihao/AssetMirrorBundle.git
+[submodule "src/ZthMe/ResourceHandlerBundle"]
+	path = src/ZthMe/ResourceHandlerBundle
+	url = https://github.com/zhangtaihao/ResourceHandlerBundle.git
