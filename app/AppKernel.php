@@ -21,8 +21,8 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new ANU\Bundle\StyleProxyBundle\ANUStyleProxyBundle(),
-            new ZthMe\ResourceHandlerBundle\ZthMeResourceHandlerBundle(),
-            new ZthMe\AssetMirrorBundle\ZthMeAssetMirrorBundle(),
+            new ANU\Bundle\ResourceHandlerBundle\ANUResourceHandlerBundle(),
+            new ANU\Bundle\ResourceMirrorBundle\ANUResourceMirrorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
