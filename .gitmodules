@@ -1,9 +1,9 @@
-[submodule "src/ANU/Bundle/ResourceMirrorBundle"]
-	path = src/ANU/Bundle/ResourceMirrorBundle
-	url = git://github.com/zhangtaihao/ANUResourceMirrorBundle.git
-[submodule "src/ANU/Bundle/ResourceHandlerBundle"]
-	path = src/ANU/Bundle/ResourceHandlerBundle
-	url = git://github.com/zhangtaihao/ANUResourceHandlerBundle.git
 [submodule "src/Orbt/ResourceManager"]
 	path = src/Orbt/ResourceManager
 	url = git://github.com/orbt/ResourceManager.git
+[submodule "src/Orbt/Bundle/ResourceMirrorBundle"]
+	path = src/Orbt/Bundle/ResourceMirrorBundle
+	url = git://github.com/orbt/OrbtResourceMirrorBundle.git
+[submodule "src/Orbt/Bundle/ResourceHandlerBundle"]
+	path = src/Orbt/Bundle/ResourceHandlerBundle
+	url = git://github.com/orbt/OrbtResourceHandlerBundle.git
