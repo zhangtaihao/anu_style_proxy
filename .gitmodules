@@ -4,3 +4,6 @@
 [submodule "src/ANU/Bundle/ResourceHandlerBundle"]
 	path = src/ANU/Bundle/ResourceHandlerBundle
 	url = git://github.com/zhangtaihao/ANUResourceHandlerBundle.git
+[submodule "src/Orbt/ResourceManager"]
+	path = src/Orbt/ResourceManager
+	url = git://github.com/orbt/ResourceManager.git
