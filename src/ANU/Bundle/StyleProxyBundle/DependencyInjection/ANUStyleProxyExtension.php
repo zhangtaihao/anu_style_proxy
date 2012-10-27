@@ -38,10 +38,6 @@ class ANUStyleProxyExtension extends Extension
         }
 
         $this->registerAssetServerConfiguration($config, $container, $loader);
-
-        if (in_array($config['proxy_mode'], array('asset', 'combined'))) {
-            $this->registerAssetManagerConfiguration($config, $container, $loader);
-        }
     }
 
     private function registerStyleServerConfiguration($config, ContainerBuilder $container, YamlFileLoader $loader)
@@ -52,10 +48,5 @@ class ANUStyleProxyExtension extends Extension
     private function registerAssetServerConfiguration($config, ContainerBuilder $container, YamlFileLoader $loader)
     {
         $loader->load('asset_server.yml');
-    }
-
-    private function registerAssetManagerConfiguration($config, ContainerBuilder $container, YamlFileLoader $loader)
-    {
-        $loader->load('asset_manager.yml');
     }
 }
