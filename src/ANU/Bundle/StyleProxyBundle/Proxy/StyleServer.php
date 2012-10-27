@@ -6,6 +6,9 @@ use Guzzle\Http\Client;
 use Guzzle\Http\Message\RequestInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Delegate style server.
+ */
 class StyleServer
 {
     private $backendStyleBase;
@@ -37,6 +40,10 @@ class StyleServer
         return $this->backendStyleInclude;
     }
 
+    /**
+     * Returns the HTTP client for the backend style server.
+     * @return Client
+     */
     public function getBackendClient()
     {
         if (!isset($this->client)) {
@@ -45,6 +52,12 @@ class StyleServer
         return $this->client;
     }
 
+    /**
+     * Delegates a request to the backend server.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \Guzzle\Http\Message\Response
+     */
     public function delegate(Request $request)
     {
         $backendRequest = $this->createBackendRequest($request);
