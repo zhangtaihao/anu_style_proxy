@@ -19,7 +19,8 @@
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
         "liip/doctrine-cache-bundle": "dev-master",
-        "natxet/CssMin": "dev-master"
+        "natxet/CssMin": "dev-master",
+        "guzzle/http": ">=3.0.0"
     },
     "scripts": {
         "post-install-cmd": [
