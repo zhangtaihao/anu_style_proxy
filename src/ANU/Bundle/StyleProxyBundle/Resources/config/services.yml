@@ -3,8 +3,9 @@ parameters:
     anu_style_proxy.default_controller.class: ANU\Bundle\StyleProxyBundle\Controller\DefaultController
     anu_style_proxy.cache_id: liip_doctrine_cache.ns.default
     anu_style_proxy.placeholder_message: "You have reached a style proxy."
-    anu_style_proxy.backend_style_server: ~
-    anu_style_proxy.backend_asset_server: ~
+    anu_style_proxy.backend_style_base: ~
+    anu_style_proxy.backend_style_include: include.php
+    anu_style_proxy.backend_asset_base: ~
     anu_style_proxy.cache_backend_assets: false
 
 services:

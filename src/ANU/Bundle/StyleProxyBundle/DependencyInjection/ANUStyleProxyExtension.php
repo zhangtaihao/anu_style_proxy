@@ -26,8 +26,8 @@ class ANUStyleProxyExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $container->setParameter('anu_style_proxy.backend_style_server', $config['backend_style_server']);
-        $container->setParameter('anu_style_proxy.backend_asset_server', $config['backend_asset_server']);
+        $container->setParameter('anu_style_proxy.backend_style_base', $config['backend_style_server']);
+        $container->setParameter('anu_style_proxy.backend_asset_base', $config['backend_asset_server']);
 
         if (!isset($config['backend_style_server'])) {
             throw new InvalidArgumentException('Backend style server is required.');
