@@ -32,9 +32,6 @@ class ANUStyleProxyExtension extends Extension
         if (!isset($config['backend_style_server'])) {
             throw new InvalidArgumentException('Backend style server is required.');
         }
-        if (!isset($config['backend_asset_server']) && $config['proxy_mode'] == 'style') {
-            throw new InvalidArgumentException('Backend asset server is required.');
-        }
 
         if (in_array($config['proxy_mode'], array('style', 'combined'))) {
             $this->registerStyleServerConfiguration($config, $container, $loader);
