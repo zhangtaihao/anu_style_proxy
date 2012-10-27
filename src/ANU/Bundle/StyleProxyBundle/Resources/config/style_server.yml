@@ -1,8 +1,14 @@
 parameters:
     anu_style_proxy.style_server_controller.class: ANU\Bundle\StyleProxyBundle\Controller\StyleServerController
+    anu_style_proxy.style_server.class: ANU\Bundle\StyleProxyBundle\Proxy\StyleServer
 
 services:
     anu_style_proxy.style_server_controller:
         class: %anu_style_proxy.style_server_controller.class%
         calls:
             - [ setContainer, [ @service_container ] ]
+    anu_style_proxy.style_server:
+        class: %anu_style_proxy.style_server.class%
+        calls:
+            - [ setBackendStyleBase, [ %anu_style_proxy.backend_style_base% ] ]
+            - [ setBackendStyleInclude, [ %anu_style_proxy.backend_style_include% ] ]
