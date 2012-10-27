@@ -8,6 +8,18 @@ use ANU\Bundle\StyleProxyBundle\Proxy\StyleServer;
 
 class StyleServerController extends Controller
 {
+    protected $cacheMaxAge;
+
+    public function setResponseCache($enabled, $maxAge)
+    {
+        if (!$enabled) {
+            $this->cacheMaxAge = 0;
+        }
+        elseif (is_int($maxAge)) {
+            $this->cacheMaxAge = $maxAge;
+        }
+    }
+
     public function includeAction()
     {
         $request = $this->getRequest();
@@ -15,6 +27,14 @@ class StyleServerController extends Controller
         /** @var $styleServer StyleServer */
         $styleServer = $this->get('anu_style_proxy.style_server');
 
-        return $styleServer->delegate($request);
+        $response = $styleServer->delegate($request);
+
+        // Cache response.
+        if ($this->cacheMaxAge) {
+            $response->setPublic();
+            $response->setMaxAge($this->cacheMaxAge);
+            $response->headers->addCacheControlDirective('must-revalidate', true);
+        }
+        return $response;
     }
 }
