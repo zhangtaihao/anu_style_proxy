@@ -17,6 +17,6 @@ class CachePass implements CompilerPassInterface
             throw new \InvalidArgumentException('Supplied cache ID is not defined: '.$cacheId);
         }
 
-        $container->setAlias('anu_style_proxy.cache_id', $cacheId);
+        $container->setAlias('anu_style_proxy.cache', $cacheId);
     }
 }
