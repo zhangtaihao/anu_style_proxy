@@ -2,7 +2,6 @@ parameters:
     anu_style_proxy.style_server_controller.class: ANU\Bundle\StyleProxyBundle\Controller\StyleServerController
     anu_style_proxy.style_server.class: ANU\Bundle\StyleProxyBundle\Proxy\StyleServer
     anu_style_proxy.profile_handler.class: ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileHandler
-    anu_style_proxy.optimize: ~
     anu_style_proxy.style_server_cache: true
     anu_style_proxy.style_server_cache_lifetime: 2592000  # 30 days
     anu_style_proxy.profile_cache_lifetime: 2592000  # 30 days

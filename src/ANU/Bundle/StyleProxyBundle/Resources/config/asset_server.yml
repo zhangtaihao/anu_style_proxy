@@ -1,6 +1,5 @@
 parameters:
     anu_style_proxy.asset_server_controller.class: ANU\Bundle\StyleProxyBundle\Controller\AssetServerController
-    anu_style_proxy.cache_backend_assets: ~
 
 services:
     anu_style_proxy.asset_server_controller:

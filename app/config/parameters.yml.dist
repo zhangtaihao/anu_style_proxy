@@ -1,6 +1,17 @@
 parameters:
+    # Base URL to the backend style server. This is typically the central ANU
+    # Webstyle server.
     backend_style_server:   http://styles.anu.edu.au/_anu
-    process_resources:      true
+
+    # Whether to process resources. If true, resources are cached and style
+    # sheets are aggregated. This should only be enabled if the web server can
+    # be configured to rewrite resources. Additionally, if processing is
+    # enabled, it is highly recommended that the application cache settings are
+    # configured below.
+    process_resources:      false
+    # The individual processing options can be separately configured:
+    #anu_style_proxy.optimize_styles: false
+    #anu_style_proxy.cache_backend_assets: false
 
     # Application cache configuration.
     # See http://github.com/liip/LiipDoctrineCacheBundle for how to configure
