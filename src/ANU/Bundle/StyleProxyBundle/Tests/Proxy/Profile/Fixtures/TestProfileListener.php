@@ -3,7 +3,7 @@
 namespace ANU\Bundle\StyleProxyBundle\Tests\Proxy\Profile\Fixtures;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileEvent;
+use ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileCreateEvent;
 use ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileEvents;
 
 class TestProfileListener implements EventSubscriberInterface
@@ -13,7 +13,7 @@ class TestProfileListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(ProfileEvents::CREATE => '');
+        return array(ProfileEvents::CREATE => 'onProfileCreate');
     }
 
     protected $id;
@@ -23,7 +23,7 @@ class TestProfileListener implements EventSubscriberInterface
         $this->id = $id;
     }
 
-    public function onProfileCreate(ProfileEvent $event)
+    public function onProfileCreate(ProfileCreateEvent $event)
     {
         $event->getProfile()->set($this->id, 'onProfileCreate');
     }

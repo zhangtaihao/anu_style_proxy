@@ -94,7 +94,7 @@ class ProfileHandler
 
         // Dispatch profile create event to process profile.
         if ($this->dispatcher) {
-            $this->dispatcher->dispatch(ProfileEvents::CREATE, new ProfileEvent($profile));
+            $this->dispatcher->dispatch(ProfileEvents::CREATE, new ProfileCreateEvent($profile));
         }
 
         if ($cache) {
