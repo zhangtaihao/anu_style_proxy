@@ -27,26 +27,28 @@ class ANUStyleProxyExtension extends Extension
         $loader->load('services.yml');
 
         $container->setParameter('anu_style_proxy.backend_style_base', $config['backend_style_server']);
-        $container->setParameter('anu_style_proxy.backend_asset_base', $config['backend_asset_server']);
 
-        if (!isset($config['backend_style_server'])) {
-            throw new InvalidArgumentException('Backend style server is required.');
-        }
-
-        if (in_array($config['proxy_mode'], array('style', 'combined'))) {
-            $this->registerStyleServerConfiguration($config, $container, $loader);
-        }
-
+        $this->registerStyleServerConfiguration($config, $container, $loader);
         $this->registerAssetServerConfiguration($config, $container, $loader);
     }
 
     private function registerStyleServerConfiguration($config, ContainerBuilder $container, YamlFileLoader $loader)
     {
         $loader->load('style_server.yml');
+
+        // Use 'process_resources' as default parameter value.
+        if (!$container->hasParameter('anu_style_proxy.optimize_styles')) {
+            $container->setParameter('anu_style_proxy.optimize_styles', $config['process_resources']);
+        }
     }
 
     private function registerAssetServerConfiguration($config, ContainerBuilder $container, YamlFileLoader $loader)
     {
         $loader->load('asset_server.yml');
+
+        // Use 'process_resources' as default parameter value.
+        if (!$container->hasParameter('anu_style_proxy.cache_backend_assets')) {
+            $container->setParameter('anu_style_proxy.cache_backend_assets', $config['process_resources']);
+        }
     }
 }

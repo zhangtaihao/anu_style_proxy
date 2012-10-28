@@ -4,8 +4,6 @@ parameters:
     anu_style_proxy.placeholder_message: "You have reached a style proxy."
     anu_style_proxy.backend_style_base: ~
     anu_style_proxy.backend_style_include: include.php
-    anu_style_proxy.backend_asset_base: ~
-    anu_style_proxy.cache_backend_assets: false
 
 services:
     anu_style_proxy.default_controller:
