@@ -24,6 +24,8 @@ class ProfileHandler
      */
     protected $cacheLifetime = 0;
 
+    private $instances = array();
+
     public function __construct(Cache $cache)
     {
         $this->cache = $cache;
@@ -89,7 +91,10 @@ class ProfileHandler
     protected function lookupCache(array $query)
     {
         $id = $this->getNormalizedCacheId($query);
-        if ($this->cache->contains($id)) {
+        if (isset($this->instances[$id])) {
+            return $this->instances[$id];
+        }
+        elseif ($this->cache->contains($id)) {
             $json = $this->cache->fetch($id);
             return new Profile($query, $json);
         }
@@ -104,6 +109,7 @@ class ProfileHandler
         $query = $profile->getQuery();
         $id = $this->getNormalizedCacheId($query);
         $this->cache->save($id, $profile->getSerializedData(), $this->cacheLifetime);
+        $this->instances[$id] = $profile;
     }
 
     /**
