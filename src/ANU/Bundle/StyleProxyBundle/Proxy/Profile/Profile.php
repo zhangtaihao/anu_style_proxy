@@ -37,6 +37,53 @@ class Profile
     }
 
     /**
+     * Returns an attribute of the profile data.
+     */
+    public function get($name)
+    {
+        return isset($this->data[$name]) ? $this->data[$name] : null;
+    }
+
+    /**
+     * Updates an attribute of the profile.
+     *
+     * Data updated here may reflect in other parts of the profile. For example, updating 'meta_arr' will cause the
+     * 'meta' attribute to be updated in order to maintain consistency. Note that manually updating derivative
+     * attributes such as 'meta' may cause the profile data to no longer be correct.
+     */
+    public function set($name, $value)
+    {
+        $this->data[$name] = $value;
+        $this->updateData($name);
+    }
+
+    /**
+     * Updates profile data.
+     */
+    protected function updateData($name)
+    {
+        $this->updateMeta($name);
+    }
+
+    /**
+     * Updates the meta attribute.
+     */
+    protected function updateMeta($name)
+    {
+        static $attributes = array('meta_arr', 'icon_arr', 'css_arr', 'js_arr', 'css_ie_arr');
+        if (in_array($name, $attributes)) {
+            $meta = array();
+            $data = array_intersect_key($this->data, array_flip($attributes));
+            foreach ($data as $value) {
+                if (is_array($value)) {
+                    $meta = array_merge($meta, $value);
+                }
+            }
+            $this->data['meta'] = implode("\n", $meta);
+        }
+    }
+
+    /**
      * Returns the full profile data.
      */
     public function getData()
