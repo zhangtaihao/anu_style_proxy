@@ -1,6 +1,6 @@
 <?php
 
-namespace ANU\Bundle\StyleProxyBundle\Tests\Profile;
+namespace ANU\Bundle\StyleProxyBundle\Tests\Proxy\Profile;
 
 use ANU\Bundle\StyleProxyBundle\Proxy\Profile\Profile;
 
