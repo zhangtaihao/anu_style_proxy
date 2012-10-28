@@ -1,6 +1,6 @@
 <?php
 
-namespace ANU\Bundle\StyleProxyBundle\Profile;
+namespace ANU\Bundle\StyleProxyBundle\Proxy\Profile;
 
 /**
  * A style profile for a site given a site ID.

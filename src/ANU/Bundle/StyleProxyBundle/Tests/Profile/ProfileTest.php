@@ -2,11 +2,11 @@
 
 namespace ANU\Bundle\StyleProxyBundle\Tests\Profile;
 
-use ANU\Bundle\StyleProxyBundle\Profile\Profile;
+use ANU\Bundle\StyleProxyBundle\Proxy\Profile\Profile;
 
 class ProfileTest extends \PHPUnit_Framework_TestCase
 {
-    private $profileClass = 'ANU\\Bundle\\StyleProxyBundle\\Profile\\Profile';
+    private $profileClass = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\Profile\\Profile';
 
     /**
      * Profile object can be created with JSON string.
