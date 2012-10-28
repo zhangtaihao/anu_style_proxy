@@ -18,9 +18,26 @@ class ProfileHandler
      */
     protected $cache;
 
+    /**
+     * Cache life time.
+     * @var int
+     */
+    protected $cacheLifetime = 0;
+
     public function __construct(Cache $cache)
     {
         $this->cache = $cache;
+    }
+
+    /**
+     * Sets the cache lifetime.
+     *
+     * @param int $lifetime
+     *   Number of seconds to cache a profile.
+     */
+    public function setCacheLifetime($lifetime)
+    {
+        $this->cacheLifetime = $lifetime;
     }
 
     /**
@@ -60,6 +77,9 @@ class ProfileHandler
 
         // TODO Process profile.
 
+        if ($cache) {
+            $this->storeCache($profile);
+        }
         return $profile;
     }
 
@@ -74,6 +94,16 @@ class ProfileHandler
             return new Profile($query, $json);
         }
         throw new ProfileNotCachedException('Profile cache does not exist or has expired.');
+    }
+
+    /**
+     * Stores a profile to cache.
+     */
+    protected function storeCache(Profile $profile)
+    {
+        $query = $profile->getQuery();
+        $id = $this->getNormalizedCacheId($query);
+        $this->cache->save($id, $profile->getSerializedData(), $this->cacheLifetime);
     }
 
     /**

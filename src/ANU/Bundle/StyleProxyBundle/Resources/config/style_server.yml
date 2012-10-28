@@ -21,3 +21,5 @@ services:
     anu_style_proxy.profile_handler:
         class: %anu_style_proxy.profile_handler.class%
         arguments: [ @anu_style_proxy.cache ]
+        calls:
+            - [ setCacheLifetime, [ %anu_style_proxy.profile_cache_lifetime% ] ]
