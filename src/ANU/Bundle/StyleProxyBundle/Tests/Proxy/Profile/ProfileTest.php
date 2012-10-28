@@ -60,7 +60,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Profile data can be retrieved.
+     * Profile returns data.
      *
      * @depends testCreateArray
      */
@@ -72,7 +72,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Serialized JSON profile data can be retrieved.
+     * Profile returns serialized JSON profile data.
      *
      * @depends testCreateArray
      */
