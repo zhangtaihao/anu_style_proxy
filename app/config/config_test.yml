@@ -1,6 +1,9 @@
 imports:
     - { resource: config_dev.yml }
 
+anu_style_proxy:
+    process_resources: true
+
 framework:
     test: ~
     session:
