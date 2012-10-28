@@ -8,8 +8,8 @@ use ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileHandler;
 
 class ProfileHandlerTest extends WebTestCase
 {
-    const HANDLER_CLASS = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\Profile\\ProfileHandler';
-    const PROFILE_CLASS = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\Profile\\Profile';
+    const HANDLER_CLASS = 'ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileHandler';
+    const PROFILE_CLASS = 'ANU\Bundle\StyleProxyBundle\Proxy\Profile\Profile';
 
     /**
      * Profile handler can be created with cache.
@@ -40,7 +40,7 @@ class ProfileHandlerTest extends WebTestCase
      */
     public function testCreateProfile()
     {
-        $cache = $this->getMock('Doctrine\\Common\\Cache\\ArrayCache');
+        $cache = $this->getMock('Doctrine\Common\Cache\ArrayCache');
         $cache->expects($this->never())->method('save');
         $handler = new ProfileHandler($cache);
         $profile = $handler->createProfile(array('test' => 'value'), array('profile' => 'data'), false);

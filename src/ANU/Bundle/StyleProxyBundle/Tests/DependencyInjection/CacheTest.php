@@ -13,6 +13,6 @@ class CacheTest extends WebTestCase
     {
         $client = $this->createClient();
         $cache = $client->getContainer()->get('anu_style_proxy.cache');
-        $this->assertInstanceOf('Doctrine\\Common\\Cache\\Cache', $cache);
+        $this->assertInstanceOf('Doctrine\Common\Cache\Cache', $cache);
     }
 }

@@ -6,7 +6,7 @@ use ANU\Bundle\StyleProxyBundle\Proxy\Profile\Profile;
 
 class ProfileTest extends \PHPUnit_Framework_TestCase
 {
-    const PROFILE_CLASS = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\Profile\\Profile';
+    const PROFILE_CLASS = 'ANU\Bundle\StyleProxyBundle\Proxy\Profile\Profile';
 
     /**
      * Profile object can be created with JSON string.

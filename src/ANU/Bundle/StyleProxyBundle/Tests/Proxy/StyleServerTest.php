@@ -10,7 +10,7 @@ use ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileHandler;
 
 class StyleServerTest extends \PHPUnit_Framework_TestCase
 {
-    const SERVER_CLASS = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\StyleServer';
+    const SERVER_CLASS = 'ANU\Bundle\StyleProxyBundle\Proxy\StyleServer';
 
     /**
      * Style server proxy forwards a style request.

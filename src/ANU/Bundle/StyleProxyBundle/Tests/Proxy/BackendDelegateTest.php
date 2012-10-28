@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BackendDelegateTest extends \PHPUnit_Framework_TestCase
 {
-    const DELEGATE_CLASS = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\BackendDelegate';
+    const DELEGATE_CLASS = 'ANU\Bundle\StyleProxyBundle\Proxy\BackendDelegate';
 
     /**
      * Backend delegate creates backend HTTP client using base URL.
@@ -19,7 +19,7 @@ class BackendDelegateTest extends \PHPUnit_Framework_TestCase
         $delegate = $this->getMockForAbstractClass(self::DELEGATE_CLASS, array($base));
         /** @var $delegate Proxy\BackendDelegate */
         $client = $delegate->getBackendClient();
-        $this->assertInstanceOf('Guzzle\\Http\\Client', $client);
+        $this->assertInstanceOf('Guzzle\Http\Client', $client);
         $this->assertEquals($base, $client->getBaseUrl());
     }
 
