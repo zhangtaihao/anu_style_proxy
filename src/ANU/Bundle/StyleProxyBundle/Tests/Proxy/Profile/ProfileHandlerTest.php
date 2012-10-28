@@ -3,9 +3,10 @@
 namespace ANU\Bundle\StyleProxyBundle\Tests\Proxy\Profile;
 
 use Doctrine\Common\Cache\ArrayCache;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileHandler;
 
-class ProfileHandlerTest extends \PHPUnit_Framework_TestCase
+class ProfileHandlerTest extends WebTestCase
 {
     const HANDLER_CLASS = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\Profile\\ProfileHandler';
     const PROFILE_CLASS = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\Profile\\Profile';
@@ -58,5 +59,22 @@ class ProfileHandlerTest extends \PHPUnit_Framework_TestCase
         $profile = $handler->createProfile($query, array('profile' => 'data'));
         $this->assertInstanceOf(self::PROFILE_CLASS, $profile);
         $this->assertEquals($profile->getSerializedData(), $handler->getProfile($query)->getSerializedData());
+    }
+
+    /**
+     * Profile events are dispatched to profile listeners and subscribers.
+     *
+     * @depends testCreateProfile
+     */
+    public function testProfileEvents()
+    {
+        $client = $this->createClient();
+        $container = $client->getContainer();
+        /** @var $handler ProfileHandler */
+        $handler = $container->get('anu_style_proxy.profile_handler');
+        $query = array('test' => 'value');
+        $profile = $handler->createProfile($query, array('profile' => 'data'));
+        $this->assertEquals('onProfileCreate', $profile->get('test_profile_listener'));
+        $this->assertEquals('onProfileCreate', $profile->get('test_profile_subscriber'));
     }
 }
