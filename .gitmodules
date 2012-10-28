@@ -1,0 +1,3 @@
+[submodule "src/Orbt/Bundle/ResourceMirrorBundle"]
+	path = src/Orbt/Bundle/ResourceMirrorBundle
+	url = git://github.com/orbt/OrbtResourceMirrorBundle.git
