@@ -3,6 +3,7 @@
 namespace ANU\Bundle\StyleProxyBundle\Proxy\Profile;
 
 use Doctrine\Common\Cache\Cache;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use ANU\Bundle\StyleProxyBundle\Exception\ProfileNotFoundException;
 use ANU\Bundle\StyleProxyBundle\Exception\ProfileNotCachedException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -17,6 +18,12 @@ class ProfileHandler
      * @var Cache
      */
     protected $cache;
+
+    /**
+     * Event dispatcher
+     * @var EventDispatcherInterface
+     */
+    protected $dispatcher;
 
     /**
      * Cache life time.
@@ -40,6 +47,14 @@ class ProfileHandler
     public function setCacheLifetime($lifetime)
     {
         $this->cacheLifetime = $lifetime;
+    }
+
+    /**
+     * Sets the event dispatcher.
+     */
+    public function setEventDispatcher(EventDispatcherInterface $dispatcher)
+    {
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -77,7 +92,10 @@ class ProfileHandler
     {
         $profile = new Profile($query, $data);
 
-        // TODO Process profile.
+        // Dispatch profile create event to process profile.
+        if ($this->dispatcher) {
+            $this->dispatcher->dispatch(ProfileEvents::CREATE, new ProfileEvent($profile));
+        }
 
         if ($cache) {
             $this->storeCache($profile);
