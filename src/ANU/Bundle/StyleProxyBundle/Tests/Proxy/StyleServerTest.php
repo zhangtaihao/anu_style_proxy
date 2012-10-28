@@ -3,12 +3,15 @@
 namespace ANU\Bundle\StyleProxyBundle\Tests\Proxy;
 
 use ANU\Bundle\StyleProxyBundle\Proxy\StyleServer;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Cache\ArrayCache;
 use ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileHandler;
-use Symfony\Component\HttpFoundation\Request;
 
 class StyleServerTest extends \PHPUnit_Framework_TestCase
 {
+    const SERVER_CLASS = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\StyleServer';
+
     /**
      * Style server proxy forwards a style request.
      */
@@ -22,5 +25,25 @@ class StyleServerTest extends \PHPUnit_Framework_TestCase
         ));
         $response = $server->delegate($request);
         $this->assertTrue($response->isOk());
+    }
+
+    /**
+     * Style server proxy returns a cached profile for a query.
+     */
+    public function testGetProfile()
+    {
+        $handler = new ProfileHandler(new ArrayCache());
+        $server = $this->getMock(self::SERVER_CLASS, array('delegate'), array('', '', $handler));
+        $server->expects($this->once())
+            ->method('delegate')
+            ->will($this->returnValue(Response::create('{"test":"value"}')));
+        /** @var $server StyleServer */
+        $request = new Request(array(
+            'id' => 1999,
+            'part' => 'site',
+        ));
+        $server->getProfileForRequest($request);
+        // Call again to ensure invocation only once.
+        $server->getProfileForRequest($request);
     }
 }
