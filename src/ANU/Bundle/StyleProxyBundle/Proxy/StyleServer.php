@@ -3,6 +3,7 @@
 namespace ANU\Bundle\StyleProxyBundle\Proxy;
 
 use Guzzle\Http\Client;
+use ANU\Bundle\StyleProxyBundle\Exception\ProfileNotFoundException;
 use ANU\Bundle\StyleProxyBundle\Exception\InvalidProfileRequestException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,10 +46,11 @@ class StyleServer extends SimpleProxy
     public function getProfileForRequest(Request $request)
     {
         $query = $request->query->all();
-        if ($profile = $this->profileHandler->getProfile($query)) {
+        try {
+            $profile = $this->profileHandler->getProfile($query);
             return $profile;
         }
-        else {
+        catch (ProfileNotFoundException $e) {
             try {
                 $data = $this->retrieveProfileData($request);
                 return $this->profileHandler->createProfile($query, $data);
