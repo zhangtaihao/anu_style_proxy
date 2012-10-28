@@ -46,4 +46,17 @@ class StyleServerTest extends \PHPUnit_Framework_TestCase
         // Call again to ensure invocation only once.
         $server->getProfileForRequest($request);
     }
+
+    /**
+     * Style server proxy does not return a profile for an invalid request.
+     *
+     * @expectedException \ANU\Bundle\StyleProxyBundle\Exception\InvalidProfileRequestException
+     */
+    public function testGetInvalidProfile()
+    {
+        $handler = new ProfileHandler(new ArrayCache());
+        $server = new StyleServer('http://styles.anu.edu.au/_anu', 'include.php', $handler);
+        $request = new Request();
+        $server->getProfileForRequest($request);
+    }
 }
