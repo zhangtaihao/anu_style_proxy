@@ -59,4 +59,21 @@ class StyleServerTest extends \PHPUnit_Framework_TestCase
         $request = new Request();
         $server->getProfileForRequest($request);
     }
+
+    /**
+     * Style server retrieves a style part for a request.
+     *
+     * @depends testGetProfile
+     */
+    public function testGetStyleInclude()
+    {
+        $handler = new ProfileHandler(new ArrayCache());
+        $server = new StyleServer('http://styles.anu.edu.au/_anu', 'include.php', $handler);
+        $request = new Request(array(
+            'id' => 1999,
+            'part' => 'site',
+        ));
+        $include = $server->getStyleInclude($request);
+        $this->assertEquals('www.anu.edu.au', $include);
+    }
 }
