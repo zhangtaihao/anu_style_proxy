@@ -84,6 +84,43 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Profile returns attribute value.
+     *
+     * @depends testCreateArray
+     */
+    public function testGet()
+    {
+        $data = $this->buildProfileData();
+        $profile = new Profile(array(), $data);
+        $this->assertEquals('www.anu.edu.au', $profile->get('site'));
+    }
+
+    /**
+     * Profile attribute value is updated.
+     *
+     * @depends testGet
+     */
+    public function testSet()
+    {
+        $data = $this->buildProfileData();
+        $profile = new Profile(array(), $data);
+        $profile->set('site', 'example.com');
+        $this->assertEquals('example.com', $profile->get('site'));
+    }
+
+    /**
+     * Updating profile 'meta' component arrays updates the 'meta' attribute.
+     *
+     * @depends testSet
+     */
+    public function testSetMeta()
+    {
+        $profile = new Profile(array(), array());
+        $profile->set('meta_arr', array('line1', 'line2'));
+        $this->assertEquals("line1\nline2", $profile->get('meta'));
+    }
+
+    /**
      * Returns profile JSON string.
      */
     protected function buildProfileJSON()
