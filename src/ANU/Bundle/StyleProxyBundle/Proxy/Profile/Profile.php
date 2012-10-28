@@ -7,10 +7,13 @@ namespace ANU\Bundle\StyleProxyBundle\Proxy\Profile;
  */
 class Profile
 {
+    protected $query;
     protected $data;
 
-    public function __construct($jsonData)
+    public function __construct(array $query, $jsonData)
     {
+        $this->query = $query;
+
         if (is_string($jsonData)) {
             $this->data = json_decode($jsonData);
             if ($this->data === null) {
@@ -23,6 +26,14 @@ class Profile
         else {
             throw new \InvalidArgumentException('Invalid input JSON data.');
         }
+    }
+
+    /**
+     * Returns the query used to create this profile.
+     */
+    public function getQuery()
+    {
+        return $this->query;
     }
 
     /**

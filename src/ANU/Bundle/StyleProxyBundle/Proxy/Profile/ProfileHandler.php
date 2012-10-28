@@ -28,9 +28,11 @@ class ProfileHandler
      *
      * @param array $query
      *   Query parameters for the profile.
+     * @return Profile
+     *   Profile matching query.
      *
      * @throws ProfileNotFoundException
-     *   If the query does not map to a profile object.
+     *   If the query does not match a profile object.
      */
     public function getProfile(array $query)
     {
@@ -40,6 +42,8 @@ class ProfileHandler
     /**
      * Creates a profile from data.
      *
+     * @param array $query
+     *   Profile query.
      * @param mixed $data
      *   JSON string or array data for profile.
      * @param bool $cache
@@ -50,9 +54,9 @@ class ProfileHandler
      * @throws \InvalidArgumentException
      *   If the given data cannot be used to create the profile.
      */
-    public function createProfile($data, $cache = true)
+    public function createProfile(array $query, $data, $cache = true)
     {
-        $profile = new Profile($data);
+        $profile = new Profile($query, $data);
 
         // TODO Process profile.
 
@@ -65,9 +69,9 @@ class ProfileHandler
     protected function lookupCache(array $query)
     {
         $id = $this->getNormalizedCacheId($query);
-        if (isset($this->cache) && $this->cache->contains($id)) {
+        if ($this->cache->contains($id)) {
             $json = $this->cache->fetch($id);
-            return new Profile($json);
+            return new Profile($query, $json);
         }
         throw new ProfileNotCachedException('Profile cache does not exist or has expired.');
     }

@@ -13,7 +13,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateString()
     {
-        $profile = new Profile($this->buildProfileJSON());
+        $profile = new Profile(array(), $this->buildProfileJSON());
         $this->assertInstanceOf($this->profileClass, $profile);
     }
 
@@ -25,7 +25,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
     public function testCreateInvalidString()
     {
         $invalid = 'invalid:string';
-        new Profile($invalid);
+        new Profile(array(), $invalid);
     }
 
     /**
@@ -33,7 +33,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateArray()
     {
-        $profile = new Profile($this->buildProfileData());
+        $profile = new Profile(array(), $this->buildProfileData());
         $this->assertInstanceOf($this->profileClass, $profile);
     }
 
@@ -44,7 +44,19 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateInvalid()
     {
-        new Profile(false);
+        new Profile(array(), false);
+    }
+
+    /**
+     * Profile object contains query.
+     *
+     * @depends testCreateArray
+     */
+    public function testGetQuery()
+    {
+        $query = array('test' => 'value');
+        $profile = new Profile(array('test' => 'value'), array());
+        $this->assertEquals($query, $profile->getQuery());
     }
 
     /**
@@ -55,7 +67,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
     public function testGetData()
     {
         $data = $this->buildProfileData();
-        $profile = new Profile($data);
+        $profile = new Profile(array(), $data);
         $this->assertEquals($data, $profile->getData());
     }
 
@@ -67,7 +79,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
     public function testGetSerializedData()
     {
         $data = $this->buildProfileData();
-        $profile = new Profile($data);
+        $profile = new Profile(array(), $data);
         $this->assertEquals($data, json_decode($profile->getSerializedData(), true));
     }
 

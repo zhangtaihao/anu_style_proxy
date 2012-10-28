@@ -44,13 +44,14 @@ class StyleServer extends SimpleProxy
      */
     public function getProfileForRequest(Request $request)
     {
-        if ($profile = $this->profileHandler->getProfile($request->query->all())) {
+        $query = $request->query->all();
+        if ($profile = $this->profileHandler->getProfile($query)) {
             return $profile;
         }
         else {
             try {
                 $data = $this->retrieveProfileData($request);
-                return $this->profileHandler->createProfile($data);
+                return $this->profileHandler->createProfile($query, $data);
             }
             catch (\InvalidArgumentException $e)
             {
