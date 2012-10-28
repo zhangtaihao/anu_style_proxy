@@ -21,7 +21,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('anu_style_proxy');
 
         $rootNode->children()
-            ->scalarNode('backend_style_server')->end()
+            ->scalarNode('backend_style_server')->isRequired()->end()
             ->booleanNode('process_resources')->defaultFalse()->end();
 
         return $treeBuilder;
