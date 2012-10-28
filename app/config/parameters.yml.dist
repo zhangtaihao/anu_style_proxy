@@ -1,8 +1,6 @@
 parameters:
-    proxy_mode:             combined
     backend_style_server:   http://styles.anu.edu.au/_anu
-    backend_asset_server:   ~
-    cache_backend_assets:   ~
+    process_resources:      true
 
     # Application cache configuration.
     # See http://github.com/liip/LiipDoctrineCacheBundle for how to configure

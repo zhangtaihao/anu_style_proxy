@@ -3,10 +3,8 @@ imports:
     - { resource: security.yml }
 
 anu_style_proxy:
-    proxy_mode:             %proxy_mode%
     backend_style_server:   %backend_style_server%
-    backend_asset_server:   %backend_asset_server%
-    cache_backend_assets:   %cache_backend_assets%
+    process_resources:      %process_resources%
 
 framework:
     #esi:             ~

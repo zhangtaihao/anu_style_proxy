@@ -4,8 +4,6 @@ namespace ANU\Bundle\StyleProxyBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use Symfony\Component\Validator\Constraints\UrlValidator;
-use Symfony\Component\Validator\Constraints\Url;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -23,13 +21,8 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('anu_style_proxy');
 
         $rootNode->children()
-            ->enumNode('proxy_mode')
-                ->values(array('style', 'asset', 'combined'))
-                ->treatNullLike('combined')
-            ->end()
-            ->scalarNode('backend_asset_server')->end()
             ->scalarNode('backend_style_server')->end()
-            ->booleanNode('cache_backend_assets')->defaultFalse()->end();
+            ->booleanNode('process_resources')->defaultFalse()->end();
 
         return $treeBuilder;
     }
