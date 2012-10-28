@@ -27,7 +27,11 @@ class StyleServerController extends Controller
         /** @var $styleServer StyleServer */
         $styleServer = $this->get('anu_style_proxy.style_server');
 
-        $response = $styleServer->delegate($request);
+        $include = $styleServer->getStyleInclude($request);
+        if (!isset($include)) {
+            throw $this->createNotFoundException();
+        }
+        $response = Response::create($include);
 
         // Cache response.
         if ($this->cacheMaxAge) {
