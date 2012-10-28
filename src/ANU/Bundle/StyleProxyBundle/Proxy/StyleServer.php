@@ -34,6 +34,24 @@ class StyleServer extends SimpleProxy
     }
 
     /**
+     * Retrieves a style part for a given request.
+     */
+    public function getStyleInclude(Request $request)
+    {
+        $profile = $this->getProfileForRequest($request);
+        if ($part = $request->get('part')) {
+            if ($part == 'json') {
+                return $profile->getSerializedData();
+            }
+            else {
+                $include = $profile->get($part);
+                return is_string($include) ? $include : null;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Returns a profile for a request.
      *
      * @param Request $request
@@ -78,7 +96,7 @@ class StyleServer extends SimpleProxy
     protected function createJSONRequest(Request $request)
     {
         $jsonRequest = clone $request;
-        $jsonRequest->request->set('part', 'json');
+        $jsonRequest->query->set('part', 'json');
         return $jsonRequest;
     }
 
@@ -87,7 +105,9 @@ class StyleServer extends SimpleProxy
      */
     protected function createBackendRequest(Request $request)
     {
-        $uri = $this->includePath.'?'.$request->getQueryString();
+        $query = $request->query->all();
+        $queryUri = implode(',', array_keys($query));
+        $uri = array($this->includePath.'{?'.$queryUri.'}', $query);
         $backendRequest = $this->getBackendClient()->createRequest(GuzzleRequestInterface::GET, $uri);
         return $backendRequest;
     }
