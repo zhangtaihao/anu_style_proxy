@@ -1,0 +1,14 @@
+parameters:
+    anu_style_proxy.test_profile_listener.class: ANU\Bundle\StyleProxyBundle\Tests\Proxy\Profile\Fixtures\TestProfileListener
+
+services:
+    anu_style_proxy.test_profile_listener:
+        class: %anu_style_proxy.test_profile_listener.class%
+        arguments: [ test_profile_listener ]
+        tags:
+            - { name: anu_style_proxy.profile_listener, event: profile.create, method: onProfileCreate }
+    anu_style_proxy.test_profile_subscriber:
+        class: %anu_style_proxy.test_profile_listener.class%
+        arguments: [ test_profile_subscriber ]
+        tags:
+            - { name: anu_style_proxy.profile_subscriber }
