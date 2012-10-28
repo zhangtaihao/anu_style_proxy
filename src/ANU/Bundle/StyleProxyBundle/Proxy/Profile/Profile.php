@@ -15,7 +15,7 @@ class Profile
         $this->query = $query;
 
         if (is_string($jsonData)) {
-            $this->data = json_decode($jsonData);
+            $this->data = json_decode($jsonData, true);
             if ($this->data === null) {
                 throw new \InvalidArgumentException('Unreadable JSON string.');
             }
