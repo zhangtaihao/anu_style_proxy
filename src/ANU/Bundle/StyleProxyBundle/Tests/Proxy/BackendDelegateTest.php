@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BackendDelegateTest extends \PHPUnit_Framework_TestCase
 {
-    private $delegateClass = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\BackendDelegate';
+    const DELEGATE_CLASS = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\BackendDelegate';
 
     /**
      * Backend delegate creates backend HTTP client using base URL.
@@ -16,7 +16,7 @@ class BackendDelegateTest extends \PHPUnit_Framework_TestCase
     public function testClient()
     {
         $base = 'http://example.com/';
-        $delegate = $this->getMockForAbstractClass($this->delegateClass, array($base));
+        $delegate = $this->getMockForAbstractClass(self::DELEGATE_CLASS, array($base));
         /** @var $delegate Proxy\BackendDelegate */
         $client = $delegate->getBackendClient();
         $this->assertInstanceOf('Guzzle\\Http\\Client', $client);
@@ -31,7 +31,7 @@ class BackendDelegateTest extends \PHPUnit_Framework_TestCase
      */
     public function testDelegateRequest()
     {
-        $delegate = $this->getMockForAbstractClass($this->delegateClass, array(''));
+        $delegate = $this->getMockForAbstractClass(self::DELEGATE_CLASS, array(''));
         $delegate->expects($this->any())
             ->method('createBackendRequest')
             ->will($this->throwException(new Exception('create request')));
@@ -48,7 +48,7 @@ class BackendDelegateTest extends \PHPUnit_Framework_TestCase
      */
     public function testDelegateResponse()
     {
-        $delegate = $this->getMockForAbstractClass($this->delegateClass, array('http://localhost'));
+        $delegate = $this->getMockForAbstractClass(self::DELEGATE_CLASS, array('http://localhost'));
         /** @var $delegate Proxy\BackendDelegate */
         $client = $delegate->getBackendClient();
         $delegate->expects($this->any())

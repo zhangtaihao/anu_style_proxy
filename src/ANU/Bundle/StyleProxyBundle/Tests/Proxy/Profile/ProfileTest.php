@@ -6,7 +6,7 @@ use ANU\Bundle\StyleProxyBundle\Proxy\Profile\Profile;
 
 class ProfileTest extends \PHPUnit_Framework_TestCase
 {
-    private $profileClass = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\Profile\\Profile';
+    const PROFILE_CLASS = 'ANU\\Bundle\\StyleProxyBundle\\Proxy\\Profile\\Profile';
 
     /**
      * Profile object can be created with JSON string.
@@ -14,7 +14,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
     public function testCreateString()
     {
         $profile = new Profile(array(), $this->buildProfileJSON());
-        $this->assertInstanceOf($this->profileClass, $profile);
+        $this->assertInstanceOf(self::PROFILE_CLASS, $profile);
     }
 
     /**
@@ -34,7 +34,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
     public function testCreateArray()
     {
         $profile = new Profile(array(), $this->buildProfileData());
-        $this->assertInstanceOf($this->profileClass, $profile);
+        $this->assertInstanceOf(self::PROFILE_CLASS, $profile);
     }
 
     /**
