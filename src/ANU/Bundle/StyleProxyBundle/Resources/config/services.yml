@@ -14,4 +14,7 @@ services:
             - [ setContainer, [ @service_container ] ]
     anu_style_proxy.base_url:
         class: %anu_style_proxy.base_url.class%
-        arguments: [  ]
+        arguments: [ @request, %anu_style_proxy.style_base% ]
+    anu_style_proxy.backend_base_url:
+        class: %anu_style_proxy.base_url.class%
+        arguments: [ @request, %anu_style_proxy.backend_style_base% ]
