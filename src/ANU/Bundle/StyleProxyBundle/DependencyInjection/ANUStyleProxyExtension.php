@@ -31,8 +31,8 @@ class ANUStyleProxyExtension extends Extension
         }
 
         $container->setParameter('anu_style_proxy.backend_style_base', $config['backend_style_server']);
-        if (!empty($config['style_base'])) {
-            $container->setParameter('anu_style_proxy.style_base', $config['style_base']);
+        if (!empty($config['style_server_base'])) {
+            $container->setParameter('anu_style_proxy.style_base', $config['style_server_base']);
         }
 
         $this->registerStyleServerConfiguration($config, $container, $loader);
