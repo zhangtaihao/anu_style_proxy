@@ -3,6 +3,10 @@ parameters:
     # Webstyle server.
     backend_style_server:   http://styles.anu.edu.au/_anu
 
+    # Style server base. This should be set if serving styles from behind a
+    # reverse proxy.
+    style_server_base:      ~
+
     # Whether to process resources. If true, resources are cached and style
     # sheets are aggregated. This should only be enabled if the web server can
     # be configured to rewrite resources. Additionally, if processing is

@@ -4,6 +4,7 @@ imports:
 
 anu_style_proxy:
     backend_style_server:   %backend_style_server%
+    style_base:             $style_server_base%
     process_resources:      %process_resources%
 
 orbt_resource_mirror:
