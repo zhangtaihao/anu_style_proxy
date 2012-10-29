@@ -45,6 +45,16 @@ class Profile
     }
 
     /**
+     * Returns a site variable from the 'sitevars' attribute.
+     *
+     * If no 'sitevars' attribute exists, null is returned.
+     */
+    public function getSiteVariable($name)
+    {
+        return isset($this->data['sitevars'][$name]) ? $this->data['sitevars'][$name] : null;
+    }
+
+    /**
      * Updates an attribute of the profile.
      *
      * Data updated here may reflect in other parts of the profile. For example, updating 'meta_arr' will cause the
