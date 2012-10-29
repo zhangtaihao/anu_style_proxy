@@ -48,7 +48,7 @@ class BaseUrl
             return $this->baseUrl;
         }
         else {
-            return $this->request->getBaseUrl();
+            return $this->request->getUriForPath('');
         }
     }
 }
