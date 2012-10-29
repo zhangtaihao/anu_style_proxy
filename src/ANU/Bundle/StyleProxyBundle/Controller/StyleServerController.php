@@ -10,13 +10,6 @@ class StyleServerController extends Controller
 {
     protected $cacheMaxAge;
 
-    public function __construct($cacheEnabled, $cacheMaxAge)
-    {
-        if ($cacheEnabled) {
-            $this->cacheMaxAge = $cacheMaxAge;
-        }
-    }
-
     public function setResponseCache($enabled, $maxAge)
     {
         if (!$enabled) {
