@@ -4,8 +4,9 @@ parameters:
     backend_style_server:   http://styles.anu.edu.au/_anu
 
     # Style server base. This should be set if serving styles from behind a
-    # reverse proxy.
+    # reverse proxy (and also set the next parameter to true).
     style_server_base:      ~
+    use_reverse_proxy:      false
 
     # Whether to process resources. If true, resources are cached and style
     # sheets are aggregated. This should only be enabled if the web server can
