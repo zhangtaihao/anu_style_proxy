@@ -96,6 +96,18 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Profile returns a site variable.
+     *
+     * @depends testCreateArray
+     */
+    public function testGetSiteVariable()
+    {
+        $data = $this->buildProfileData();
+        $profile = new Profile(array(), $data);
+        $this->assertEquals('www.anu.edu.au', $profile->getSiteVariable('site_url'));
+    }
+
+    /**
      * Profile attribute value is updated.
      *
      * @depends testGet
