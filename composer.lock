@@ -1,5 +1,5 @@
 {
-    "hash": "e4d3f51bb54e35f4377701d04f32888a",
+    "hash": "f7138833fa7ace257eb1b04c55d72b97",
     "packages": [
         {
             "name": "doctrine/common",
@@ -922,6 +922,45 @@
             "homepage": "http://github.com/orbt/ResourceMirror"
         },
         {
+            "name": "orbt/resource-mirror-bundle",
+            "version": "dev-master",
+            "target-dir": "Orbt/Bundle/ResourceMirrorBundle",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/orbt/OrbtResourceMirrorBundle.git",
+                "reference": "4ce0f14f0752772e6f63199bb30085dce5de3b0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/orbt/OrbtResourceMirrorBundle/zipball/4ce0f14f0752772e6f63199bb30085dce5de3b0a",
+                "reference": "4ce0f14f0752772e6f63199bb30085dce5de3b0a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/event-dispatcher": ">=2.0.0,<2.2-dev"
+            },
+            "time": "1351536627",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Orbt\\Bundle\\ResourceMirrorBundle\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taihao Zhang",
+                    "email": "jason@zth.me"
+                }
+            ],
+            "description": "Basic Symfony dependency injection bundle for the Resource Mirror library.",
+            "homepage": "http://github.com/orbt/OrbtResourceMirrorBundle"
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "v2.1.1",
             "target-dir": "Sensio/Bundle/DistributionBundle",
@@ -1480,6 +1519,7 @@
     "stability-flags": {
         "liip/doctrine-cache-bundle": 20,
         "natxet/cssmin": 20,
-        "orbt/resource-mirror": 20
+        "orbt/resource-mirror": 20,
+        "orbt/resource-mirror-bundle": 20
     }
 }

@@ -21,7 +21,8 @@
         "liip/doctrine-cache-bundle": "dev-master",
         "natxet/CssMin": "dev-master",
         "guzzle/http": ">=3.0.0",
-        "orbt/resource-mirror": "dev-master"
+        "orbt/resource-mirror": "dev-master",
+        "orbt/resource-mirror-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
