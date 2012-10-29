@@ -9,9 +9,11 @@ parameters:
 services:
     anu_style_proxy.style_server_controller:
         class: %anu_style_proxy.style_server_controller.class%
+        arguments:
+            - %anu_style_proxy.style_server_cache%
+            - %anu_style_proxy.style_server_cache_lifetime%
         calls:
             - [ setContainer, [ @service_container ] ]
-            - [ setResponseCache, [ %anu_style_proxy.style_server_cache%, %anu_style_proxy.style_server_cache_lifetime% ] ]
     anu_style_proxy.style_server:
         class: %anu_style_proxy.style_server.class%
         arguments:
