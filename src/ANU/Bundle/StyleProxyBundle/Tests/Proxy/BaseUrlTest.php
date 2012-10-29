@@ -48,4 +48,15 @@ class BaseUrlTest extends \PHPUnit_Framework_TestCase
         $url = new BaseUrl(Request::create('https://localhost/'), 'nonstandard://example.com/');
         $this->assertEquals('nonstandard://example.com/', $url->getUrl());
     }
+
+    /**
+     * A base URL wrapper returns the request URL if no base URL is used to create it.
+     *
+     * @depends testGetUrl
+     */
+    public function testGetUrlRequest()
+    {
+        $url = new BaseUrl(Request::create('http://localhost'));
+        $this->assertEquals('http://localhost', $url->getUrl());
+    }
 }
