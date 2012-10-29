@@ -13,6 +13,7 @@ class ANUStyleProxyBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new DependencyInjection\Compiler\CachePass());
+        $container->addCompilerPass(new DependencyInjection\Compiler\CacheBackendAssetsPass());
         $container->addCompilerPass(new DependencyInjection\Compiler\RegisterProfileListenersPass(), PassConfig::TYPE_BEFORE_REMOVING);
     }
 }
