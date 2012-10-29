@@ -1,5 +1,5 @@
 {
-    "hash": "343571f0d31b800f1af3ee7b193f86bb",
+    "hash": "e4d3f51bb54e35f4377701d04f32888a",
     "packages": [
         {
             "name": "doctrine/common",
@@ -883,6 +883,45 @@
             "time": "1329902120"
         },
         {
+            "name": "orbt/resource-mirror",
+            "version": "dev-master",
+            "target-dir": "Orbt/ResourceMirror",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/orbt/ResourceMirror.git",
+                "reference": "d4e885b4b6e4271ddd334561a478e9f537b63401"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/orbt/ResourceMirror/zipball/d4e885b4b6e4271ddd334561a478e9f537b63401",
+                "reference": "d4e885b4b6e4271ddd334561a478e9f537b63401",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/event-dispatcher": ">=2.0.0,<2.2-dev"
+            },
+            "time": "1351518319",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Orbt\\ResourceMirror\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taihao Zhang",
+                    "email": "jason@zth.me"
+                }
+            ],
+            "description": "Resource Mirror is a library for mirroring webpage resources in a local directory for serving over the web as a mirror.",
+            "homepage": "http://github.com/orbt/ResourceMirror"
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "v2.1.1",
             "target-dir": "Sensio/Bundle/DistributionBundle",
@@ -1440,6 +1479,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "liip/doctrine-cache-bundle": 20,
-        "natxet/cssmin": 20
+        "natxet/cssmin": 20,
+        "orbt/resource-mirror": 20
     }
 }
