@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->scalarNode('backend_style_server')->isRequired()->end()
             ->booleanNode('process_resources')->defaultFalse()->end()
-            ->scalarNode('test')->treatNullLike(true)->end();
+            ->booleanNode('test')->end();
 
         return $treeBuilder;
     }

@@ -2,7 +2,7 @@ imports:
     - { resource: config_dev.yml }
 
 anu_style_proxy:
-    test: ~
+    test: true
     process_resources: true
 
 framework:
