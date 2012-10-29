@@ -5,20 +5,31 @@ namespace ANU\Bundle\StyleProxyBundle\Proxy;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Wrapper for the current request.
+ * Base URL wrapper for the current request.
  *
  * This uses the request state to manipulate the base URL before returning.
  */
 class BaseUrl
 {
+    protected $request;
     protected $baseUrl;
     protected $unschemedBaseUrl;
-    protected $request;
 
-    public function __construct($baseUrl, Request $request)
+    /**
+     * Wraps a base URL.
+     *
+     * @param Request $request
+     *   Request to modify base URL with.
+     * @param string|null $baseUrl
+     *   Base URL to wrap. If not specified, the request base URL is used.
+     */
+    public function __construct(Request $request, $baseUrl = null)
     {
-        $this->baseUrl = $baseUrl;
         $this->request = $request;
+        if (!isset($baseUrl)) {
+            $baseUrl = $request->getBaseUrl();
+        }
+        $this->baseUrl = $baseUrl;
 
         @list($scheme, $unschemedBaseUrl) = explode('://', $baseUrl, 2);
         if (in_array($scheme, array('http', 'https'))) {

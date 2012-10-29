@@ -12,7 +12,7 @@ class BaseUrlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreate()
     {
-        $url = new BaseUrl('http://example.com/', Request::create('http://localhost/'));
+        $url = new BaseUrl(Request::create('http://localhost/'), 'http://example.com/');
         $this->assertInstanceOf('ANU\Bundle\StyleProxyBundle\Proxy\BaseUrl', $url);
     }
 
@@ -23,7 +23,7 @@ class BaseUrlTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUrl()
     {
-        $url = new BaseUrl('http://example.com/', Request::create('http://localhost/'));
+        $url = new BaseUrl(Request::create('http://localhost/'), 'http://example.com/');
         $this->assertEquals('http://example.com/', $url->getUrl());
     }
 
@@ -34,7 +34,7 @@ class BaseUrlTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUrlSecure()
     {
-        $url = new BaseUrl('http://example.com/', Request::create('https://localhost/'));
+        $url = new BaseUrl(Request::create('https://localhost/'), 'http://example.com/');
         $this->assertEquals('https://example.com/', $url->getUrl());
     }
 
@@ -45,7 +45,7 @@ class BaseUrlTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUrlNonStandard()
     {
-        $url = new BaseUrl('nonstandard://example.com/', Request::create('https://localhost/'));
+        $url = new BaseUrl(Request::create('https://localhost/'), 'nonstandard://example.com/');
         $this->assertEquals('nonstandard://example.com/', $url->getUrl());
     }
 }
