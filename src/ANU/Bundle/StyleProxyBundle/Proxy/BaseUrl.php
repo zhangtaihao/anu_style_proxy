@@ -26,14 +26,13 @@ class BaseUrl
     public function __construct(Request $request, $baseUrl = null)
     {
         $this->request = $request;
-        if (!isset($baseUrl)) {
-            $baseUrl = $request->getBaseUrl();
-        }
         $this->baseUrl = $baseUrl;
 
-        @list($scheme, $unschemedBaseUrl) = explode('://', $baseUrl, 2);
-        if (in_array($scheme, array('http', 'https'))) {
-            $this->unschemedBaseUrl = $unschemedBaseUrl;
+        if (isset($baseUrl)) {
+            @list($scheme, $unschemedBaseUrl) = explode('://', $baseUrl, 2);
+            if (in_array($scheme, array('http', 'https'))) {
+                $this->unschemedBaseUrl = $unschemedBaseUrl;
+            }
         }
     }
 
@@ -45,8 +44,11 @@ class BaseUrl
         if (isset($this->unschemedBaseUrl)) {
             return $this->request->getScheme().'://'.$this->unschemedBaseUrl;
         }
-        else {
+        elseif (isset($this->baseUrl)) {
             return $this->baseUrl;
+        }
+        else {
+            return $this->request->getBaseUrl();
         }
     }
 }
