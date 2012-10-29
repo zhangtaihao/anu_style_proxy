@@ -15,4 +15,14 @@ class AssetServerControllerTest extends WebTestCase
         $client->request('GET', '/images/icons/external.png');
         $this->assertTrue($client->getResponse()->isSuccessful());
     }
+
+    /**
+     * Asset server controller redirects an asset request if not caching.
+     */
+    public function testResourceRedirect()
+    {
+        $client = static::createClient(array('environment' => 'test2'));
+        $client->request('GET', '/images/icons/external.png');
+        $this->assertTrue($client->getResponse()->isRedirect());
+    }
 }
