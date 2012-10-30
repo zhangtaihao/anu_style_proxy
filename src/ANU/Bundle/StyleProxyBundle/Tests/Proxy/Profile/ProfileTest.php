@@ -133,6 +133,25 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Profile creates a base URL from its state.
+     *
+     * @depends testCreateArray
+     */
+    public function testCreateBaseUrl()
+    {
+        $profile = new Profile(array(), array());
+        $url = $profile->createBaseUrl('http://localhost')->getUrl();
+        $this->assertEquals('http://localhost', $url);
+        $url = $profile->createBaseUrl('https://localhost')->getUrl();
+        $this->assertEquals('http://localhost', $url);
+        $profile = new Profile(array(), array(
+            'sitevars' => array('https' => true),
+        ));
+        $url = $profile->createBaseUrl('http://localhost')->getUrl();
+        $this->assertEquals('https://localhost', $url);
+    }
+
+    /**
      * Returns profile JSON string.
      */
     protected function buildProfileJSON()
