@@ -11,6 +11,9 @@ orbt_resource_mirror:
     base_url:               %backend_style_server%
     directory:              %kernel.root_dir%/../web/mirror
 
+orbt_style_mirror:
+    fetch_linked_resource:  %process_resources%
+
 framework:
     #esi:             ~
     #translator:      { fallback: %locale% }
