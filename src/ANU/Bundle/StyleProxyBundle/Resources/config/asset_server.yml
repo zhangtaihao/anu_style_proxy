@@ -1,6 +1,8 @@
 parameters:
     anu_style_proxy.asset_server_controller.class: ANU\Bundle\StyleProxyBundle\Controller\AssetServerController
     anu_style_proxy.asset_server.class: ANU\Bundle\StyleProxyBundle\Proxy\AssetServer
+    anu_style_proxy.asset_server_cache: true
+    anu_style_proxy.asset_server_cache_lifetime: 2592000  # 30 days
 
 services:
     anu_style_proxy.asset_server_controller:
@@ -8,6 +10,7 @@ services:
         arguments: [ @anu_style_proxy.backend_base_url ]
         calls:
             - [ setContainer, [ @service_container ] ]
+            - [ setResponseCache, [ %anu_style_proxy.asset_server_cache%, %anu_style_proxy.asset_server_cache_lifetime% ] ]
         scope: request
     anu_style_proxy.asset_server:
         class: %anu_style_proxy.asset_server.class%

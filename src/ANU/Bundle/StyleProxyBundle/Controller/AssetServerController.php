@@ -10,9 +10,21 @@ class AssetServerController extends Controller
 {
     protected $backendBaseUrl;
 
+    protected $cacheMaxAge;
+
     public function __construct(BaseUrl $backendBaseUrl)
     {
         $this->backendBaseUrl = $backendBaseUrl;
+    }
+
+    public function setResponseCache($enabled, $maxAge)
+    {
+        if (!$enabled) {
+            $this->cacheMaxAge = 0;
+        }
+        elseif (is_int($maxAge)) {
+            $this->cacheMaxAge = $maxAge;
+        }
     }
 
     public function resourceAction($path)
@@ -23,7 +35,16 @@ class AssetServerController extends Controller
         if ($this->has('anu_style_proxy.asset_server')) {
             /** @var $server AssetServer */
             $server = $this->get('anu_style_proxy.asset_server');
-            return $server->getResource($request);
+            $response = $server->getResource($request);
+
+            // Cache response.
+            if ($this->cacheMaxAge) {
+                $response->setPublic();
+                $response->setMaxAge($this->cacheMaxAge);
+                $response->headers->addCacheControlDirective('must-revalidate', true);
+            }
+
+            return $response;
         }
         // Redirect to backend.
         else {
