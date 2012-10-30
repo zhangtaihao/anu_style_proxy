@@ -17,6 +17,15 @@ class BaseUrlTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * A base URL wrapper can be instantiated statically.
+     */
+    public function testCreateStatic()
+    {
+        $url = BaseUrl::create(Request::create('http://localhost/'), 'http://example.com/');
+        $this->assertInstanceOf('ANU\Bundle\StyleProxyBundle\Proxy\BaseUrl', $url);
+    }
+
+    /**
      * A base URL wrapper returns a URL for a non-secure URL.
      *
      * @depends testCreate
