@@ -35,9 +35,19 @@ class AssetServer
     public function getResource(Request $request)
     {
         $resourceRequest = new GenericResource(substr($request->getPathInfo(), 1));
-        $resource = $this->mirror->materialize($resourceRequest);
-        $mimeType = MimeTypeGuesser::getInstance()->guess($resource->getRealPath());
-        return Response::create($resource->getContent(), 200, array(
+
+        if ($this->mirror->exists($resourceRequest)) {
+            $realPath = realpath($this->mirror->getDirectory().'/'.$resourceRequest->getPath());
+            $content = file_get_contents($realPath);
+            $mimeType = MimeTypeGuesser::getInstance()->guess($realPath);
+        }
+        else {
+            $resource = $this->mirror->materialize($resourceRequest);
+            $content = $resource->getContent();
+            $mimeType = MimeTypeGuesser::getInstance()->guess($resource->getRealPath());
+        }
+
+        return Response::create($content, 200, array(
             'Content-Type' => $mimeType,
         ));
     }
