@@ -26,12 +26,15 @@ class CacheProfileAssetPreprocessorTest extends WebTestCase
 EOF;
         $profile = new Profile(array(), array(
             'banner' => $testContent,
+            'css_ie_arr' => array('<!--[if IE]><link href="http://styles.anu.edu.au/_anu/3/style/anu-ie.css" rel="stylesheet" type="text/css" media="screen"/><![endif]-->'),
         ));
         $preprocessor->preprocess($profile);
         $preprocessedContent = $profile->get('banner');
         $this->assertContains('href="http://localhost/3/images/logos/anu.ico"', $preprocessedContent);
         $this->assertContains('href="http://localhost/3/style/anu-common.css"', $preprocessedContent);
         $this->assertContains('src="http://localhost/3/images/logos/anu_logo_print.png"', $preprocessedContent);
+        $preprocessedContent = $profile->get('css_ie_arr');
+        $this->assertContains('href="http://localhost/3/style/anu-ie.css"', reset($preprocessedContent));
 
         /** @var $mirror ResourceMirror */
         $mirror = $container->get('orbt_resource_mirror.mirror');
