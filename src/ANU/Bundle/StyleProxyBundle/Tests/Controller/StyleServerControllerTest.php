@@ -25,4 +25,14 @@ class StyleServerControllerTest extends WebTestCase
         $client->request('GET', '/include.php?part=invalid');
         $this->assertTrue($client->getResponse()->isNotFound());
     }
+
+    /**
+     * Style server controller returns an aggregated style sheet when processing.
+     */
+    public function testAggregate()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/include.php?part=meta');
+        $this->assertContains('href="http://localhost/style_', $client->getResponse()->getContent());
+    }
 }
