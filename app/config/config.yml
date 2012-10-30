@@ -6,6 +6,7 @@ anu_style_proxy:
     backend_style_server:   %backend_style_server%
     style_server_base:      %style_server_base%
     process_resources:      %process_resources%
+    style_filters:          [ cssmin ]
 
 orbt_resource_mirror:
     base_url:               %backend_style_server%
