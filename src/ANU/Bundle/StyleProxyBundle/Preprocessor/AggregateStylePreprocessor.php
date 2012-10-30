@@ -77,7 +77,7 @@ class AggregateStylePreprocessor implements Preprocessor
      */
     private function getCollectionFromLinks(array $tags, $backendBaseUrl)
     {
-        $attributePattern = '([^=]+)="([^"]*)"';
+        $attributePattern = '\s*([^=]+)="([^"]*)"';
         $tagPattern = '<link((?:\s+'.$attributePattern.')*)\s*/>';
 
         $collection = new Collection();
