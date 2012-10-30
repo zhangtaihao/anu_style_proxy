@@ -7,7 +7,7 @@ use ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileCreateEvent;
 use ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfileEvents;
 use ANU\Bundle\StyleProxyBundle\Proxy\BaseUrl;
 
-class CacheProfileListener implements EventSubscriberInterface
+class CacheProfileAssetListener implements EventSubscriberInterface
 {
     /**
      * {@inheritdoc}
