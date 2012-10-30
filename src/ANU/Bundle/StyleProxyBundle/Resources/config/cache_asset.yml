@@ -1,0 +1,10 @@
+parameters:
+    anu_style_proxy.cache_profile_asset_listener.class: ANU\Bundle\StyleProxyBundle\EventListener\CacheProfileAssetListener
+
+services:
+    anu_style_proxy.cache_profile_asset_listener:
+        class: %anu_style_proxy.cache_profile_asset_listener.class%
+        arguments: [ @anu_style_proxy.base_url, @anu_style_proxy.backend_base_url ]
+        scope: request
+        tags:
+            - { name: anu_style_proxy.profile_subscriber }

@@ -54,8 +54,12 @@ class ANUStyleProxyExtension extends Extension
         $loader->load('asset_server.yml');
 
         // Use 'process_resources' as default parameter value.
-        if (!$container->hasParameter('anu_style_proxy.cache_backend_assets')) {
-            $container->setParameter('anu_style_proxy.cache_backend_assets', $config['process_resources']);
+        $parameter = 'anu_style_proxy.cache_backend_assets';
+        if (!$container->hasParameter($parameter)) {
+            $container->setParameter($parameter, $config['process_resources']);
+        }
+        if ($container->getParameter($parameter)) {
+            $loader->load('cache_asset.yml');
         }
     }
 }
