@@ -35,11 +35,11 @@ class ProfilePreprocess
         if ($preprocessorInfo) {
             // First add priority differential to pin the current order.
             $increment = $delta = 0.01 / count($preprocessorInfo);
-            foreach ($preprocessorInfo as $preprocessor) {
-                $preprocessorInfo += array(
+            foreach ($preprocessorInfo as $id => $preprocessor) {
+                $preprocessorInfo[$id] += array(
                     'priority' => 0,
                 );
-                $preprocessorInfo['priority'] += $increment;
+                $preprocessorInfo[$id]['priority'] += $increment;
                 $increment += $delta;
             }
             // Sort.
