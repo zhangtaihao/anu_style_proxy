@@ -7,6 +7,6 @@ services:
         arguments:
             - @orbt_resource_mirror.mirror
             - %anu_style_proxy.backend_style_base%
-            - %anu_style_proxy.backend_style_include%
+            - %anu_style_proxy.style_base%
         tags:
             - { name: anu_style_proxy.profile_preprocessor }
