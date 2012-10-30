@@ -36,8 +36,9 @@ class ProfilePreprocess
         $increment = $delta = 0.01 / count($preprocessorInfo);
         foreach ($preprocessorInfo as $preprocessor) {
             $preprocessorInfo += array(
-                'priority' => $increment,
+                'priority' => 0,
             );
+            $preprocessorInfo['priority'] += $increment;
             $increment += $delta;
         }
         // Sort.
