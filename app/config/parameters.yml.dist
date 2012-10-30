@@ -15,7 +15,7 @@ parameters:
     # configured below.
     process_resources:      false
     # The individual processing options can be separately configured:
-    #anu_style_proxy.optimize_styles: false
+    #anu_style_proxy.preprocess_styles: false
     #anu_style_proxy.cache_backend_assets: false
 
     # Application cache configuration.
