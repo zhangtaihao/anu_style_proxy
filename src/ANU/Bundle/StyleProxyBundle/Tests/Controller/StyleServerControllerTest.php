@@ -35,4 +35,14 @@ class StyleServerControllerTest extends WebTestCase
         $client->request('GET', '/include.php?part=meta');
         $this->assertContains('href="http://localhost/style_', $client->getResponse()->getContent());
     }
+
+    /**
+     * Style server controller does not aggregate style sheets if not processing.
+     */
+    public function testNoAggregate()
+    {
+        $client = static::createClient(array('environment' => 'test2'));
+        $client->request('GET', '/include.php?part=meta');
+        $this->assertNotContains('href="http://localhost/style_', $client->getResponse()->getContent());
+    }
 }
