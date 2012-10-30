@@ -1,0 +1,15 @@
+parameters:
+    anu_style_proxy.preprocess_profile_styles_listener.class: ANU\Bundle\StyleProxyBundle\EventListener\PreprocessProfileStylesListener
+    anu_style_proxy.profile_preprocess.class: ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfilePreprocess
+
+services:
+    anu_style_proxy.preprocess_profile_styles_listener:
+        class: %anu_style_proxy.preprocess_profile_styles_listener.class%
+        arguments: [ @anu_style_proxy.base_url, @anu_style_proxy.backend_base_url ]
+        scope: request
+        tags:
+            - { name: anu_style_proxy.profile_subscriber }
+    anu_style_proxy.profile_preprocess:
+        class: %anu_style_proxy.profile_preprocess.class%
+        # The second argument is a collection of tagged preprocessors compiled in RegisterProfilePreprocessorsPass.
+        arguments: [ @service_container, [] ]
