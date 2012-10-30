@@ -9,7 +9,6 @@ services:
     anu_style_proxy.preprocess_profile_styles_listener:
         class: %anu_style_proxy.preprocess_profile_styles_listener.class%
         arguments: [ @anu_style_proxy.profile_preprocess ]
-        scope: request
         tags:
             - { name: anu_style_proxy.profile_subscriber }
     anu_style_proxy.profile_preprocess:
