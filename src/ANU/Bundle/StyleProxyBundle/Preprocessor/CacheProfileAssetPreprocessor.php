@@ -101,7 +101,7 @@ class CacheProfileAssetPreprocessor implements Preprocessor
      */
     private function cacheAssets($content, $backendBaseUrl, $baseUrl, &$paths)
     {
-        $delimiter = '!';
+        $delimiter = '`';
         // Match src/href attribute.
         $pattern = '((?:src|href)=["\'])';
         // Match base URL.
@@ -117,8 +117,9 @@ class CacheProfileAssetPreprocessor implements Preprocessor
 
         // Rewrite and accumulate paths.
         $paths = array();
-        $callback = function ($match) use (&$paths) {
+        $callback = function ($match) use ($baseUrl, &$paths) {
             $paths[] = $match[3];
+            return $match[1].$baseUrl.$match[3].$match[4];
         };
         $content = preg_replace_callback($delimiter.$pattern.$delimiter.'i', $callback, $content);
 
