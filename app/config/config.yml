@@ -13,6 +13,7 @@ orbt_resource_mirror:
     directory:              %kernel.root_dir%/../web/mirror
 
 orbt_style_mirror:
+    aggregate_prefix:       style_
     fetch_linked_resource:  %process_resources%
 
 framework:
