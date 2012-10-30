@@ -20,7 +20,7 @@ class AssetServerControllerTest extends WebTestCase
     }
 
     /**
-     * Style server response cache is configurable.
+     * Asset server response cache is configurable.
      */
     public function testCache()
     {
