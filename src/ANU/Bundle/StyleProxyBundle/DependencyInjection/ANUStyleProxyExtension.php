@@ -50,6 +50,9 @@ class ANUStyleProxyExtension extends Extension
         }
         if ($container->getParameter($parameter)) {
             $loader->load('preprocess_styles.yml');
+            if (!empty($config['style_filters'])) {
+                $container->setParameter('anu_style_proxy.style_filters', $config['style_filters']);
+            }
         }
     }
 

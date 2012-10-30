@@ -2,6 +2,8 @@ parameters:
     anu_style_proxy.preprocess_profile_styles_listener.class: ANU\Bundle\StyleProxyBundle\EventListener\PreprocessProfileStylesListener
     anu_style_proxy.profile_preprocess.class: ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfilePreprocess
     anu_style_proxy.aggregate_style_preprocessor.class: ANU\Bundle\StyleProxyBundle\Preprocessor\AggregateStylePreprocessor
+    anu_style_proxy.style_filter_processor.class: ANU\Bundle\StyleProxyBundle\Preprocessor\Assetic\StyleFilterProcessor
+    anu_style_proxy.style_filters: []
 
 services:
     anu_style_proxy.preprocess_profile_styles_listener:
@@ -23,3 +25,6 @@ services:
             - %anu_style_proxy.style_base%
         tags:
             - { name: anu_style_proxy.profile_preprocessor }
+    anu_style_proxy.style_filter_processor:
+        class: %anu_style_proxy.style_filter_processor.class%
+        arguments: [ @assetic.filter_manager, [] ]
