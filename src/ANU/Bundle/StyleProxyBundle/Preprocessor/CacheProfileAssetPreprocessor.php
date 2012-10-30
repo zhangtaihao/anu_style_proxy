@@ -60,9 +60,6 @@ class CacheProfileAssetPreprocessor implements Preprocessor
      */
     private function preprocessAssetUrls(Profile $profile, $backendBaseUrl, $baseUrl)
     {
-        $backendBaseUrl .= '/';
-        $baseUrl .= '/';
-
         // Process parts containing HTML but excluding derived attributes, e.g. 'meta'.
         // TODO Need a better way of handling derived attributes. Perhaps explicit setter methods on the profile?
         $resourcePaths = array();
@@ -102,7 +99,7 @@ class CacheProfileAssetPreprocessor implements Preprocessor
         // Match src/href attribute.
         $pattern = '((?:src|href)=["\'])';
         // Match base URL.
-        $pattern .= '('.preg_quote($backendBaseUrl, $delimiter).')';
+        $pattern .= '('.preg_quote($backendBaseUrl.'/', $delimiter).')';
         // Match everything up to extension.
         $pattern .= '(';
         $pattern .= '(?!\.[a-z]+["\'])[^"\']*';
@@ -116,7 +113,7 @@ class CacheProfileAssetPreprocessor implements Preprocessor
         $paths = array();
         $callback = function ($match) use ($baseUrl, &$paths) {
             $paths[] = $match[3];
-            return $match[1].$baseUrl.$match[3].$match[4];
+            return $match[1].$baseUrl.'/'.$match[3].$match[4];
         };
         $content = preg_replace_callback($delimiter.$pattern.$delimiter.'i', $callback, $content);
 
