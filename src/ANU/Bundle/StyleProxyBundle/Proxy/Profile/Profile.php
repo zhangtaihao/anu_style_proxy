@@ -1,6 +1,8 @@
 <?php
 
 namespace ANU\Bundle\StyleProxyBundle\Proxy\Profile;
+use Symfony\Component\HttpFoundation\Request;
+use ANU\Bundle\StyleProxyBundle\Proxy\BaseUrl;
 
 /**
  * A style profile for a site given a site ID.
@@ -91,6 +93,16 @@ class Profile
             }
             $this->data['meta'] = implode("\n", $meta);
         }
+    }
+
+    /**
+     * Creates a base URL wrapper based on this profile.
+     */
+    public function createBaseUrl($baseUrl)
+    {
+        $profileUrl = $this->getSiteVariable('https') ? 'https://localhost' : 'http://localhost';
+        $dummyProfileRequest = Request::create($profileUrl);
+        return BaseUrl::create($dummyProfileRequest, $baseUrl);
     }
 
     /**
