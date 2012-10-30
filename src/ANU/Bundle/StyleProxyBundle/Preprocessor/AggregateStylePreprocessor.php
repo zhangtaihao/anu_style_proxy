@@ -3,6 +3,7 @@
 namespace ANU\Bundle\StyleProxyBundle\Preprocessor;
 
 use Orbt\StyleMirror\Css\Aggregator;
+use ANU\Bundle\StyleProxyBundle\Preprocessor\Assetic\StyleFilterProcessor;
 use Orbt\ResourceMirror\ResourceMirror;
 use Orbt\ResourceMirror\Resource\Resource;
 use Orbt\StyleMirror\Resource\CssResource;
@@ -38,6 +39,11 @@ class AggregateStylePreprocessor implements Preprocessor
     protected $styleBase;
 
     /**
+     * @var StyleFilterProcessor
+     */
+    protected $filter;
+
+    /**
      * Creates an style aggregate preprocessor.
      */
     public function __construct(ResourceMirror $mirror, Aggregator $aggregator, $backendStyleBase, $styleBase)
@@ -46,6 +52,14 @@ class AggregateStylePreprocessor implements Preprocessor
         $this->aggregator = $aggregator;
         $this->backendStyleBase = $backendStyleBase;
         $this->styleBase = $styleBase;
+    }
+
+    /**
+     * Sets a filter processor to use when preprocessing.
+     */
+    public function setFilter(StyleFilterProcessor $filter)
+    {
+        $this->filter = $filter;
     }
 
     /**
@@ -62,7 +76,11 @@ class AggregateStylePreprocessor implements Preprocessor
             $collection = $this->getCollectionFromLinks($cssArray, $backendBaseUrl);
             $aggregateResource = $this->aggregator->aggregate($collection);
 
-            // TODO Filter with Assetic.
+            // Filter style sheet.
+            if ($this->filter) {
+                $content = $this->filter->process($aggregateResource->getContent());
+                $aggregateResource->setContent($content);
+            }
 
             // Save to profile.
             $resource = $this->mirror->store($aggregateResource);
