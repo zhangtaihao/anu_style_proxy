@@ -59,7 +59,7 @@ class ANUStyleProxyExtension extends Extension
             $container->setParameter($parameter, $config['process_resources']);
         }
         if ($container->getParameter($parameter)) {
-            $loader->load('cache_asset.yml');
+            $loader->load('cache_assets.yml');
         }
     }
 }
