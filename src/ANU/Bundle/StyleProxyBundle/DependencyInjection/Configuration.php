@@ -24,7 +24,12 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('backend_style_server')->isRequired()->end()
             ->scalarNode('style_server_base')->end()
             ->booleanNode('process_resources')->defaultFalse()->end()
-            ->arrayNode('style_filters')->info('assetic filter names')->treatNullLike(array())->end()
+            ->arrayNode('style_filters')
+                ->info('assetic filter names')
+                ->defaultValue(array())
+                ->prototype('scalar')->end()
+                ->treatNullLike(array())
+            ->end()
             ->booleanNode('test')->end();
 
         return $treeBuilder;
