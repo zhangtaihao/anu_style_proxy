@@ -47,12 +47,9 @@ class CacheProfileAssetPreprocessor implements Preprocessor
     public function preprocess(Profile $profile)
     {
         if (isset($this->backendStyleBase) && isset($this->styleBase)) {
-            $profileUrl = $profile->getSiteVariable('https') ? 'https://localhost' : 'http://localhost';
-            $dummyProfileRequest = Request::create($profileUrl);
-
             // Derive URL from parameters.
-            $backendBaseUrl = BaseUrl::create($dummyProfileRequest, $this->backendStyleBase)->getUrl();
-            $baseUrl = BaseUrl::create($dummyProfileRequest, $this->styleBase)->getUrl();
+            $backendBaseUrl = $profile->createBaseUrl($this->backendStyleBase)->getUrl();
+            $baseUrl = $profile->createBaseUrl($this->styleBase)->getUrl();
 
             $this->preprocessAssetUrls($profile, $backendBaseUrl, $baseUrl);
         }
