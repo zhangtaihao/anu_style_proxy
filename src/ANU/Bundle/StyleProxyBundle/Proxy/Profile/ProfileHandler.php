@@ -92,7 +92,7 @@ class ProfileHandler extends ContainerAware
     public function createProfile(array $query, $data, $cache = true)
     {
         $request = null;
-        if ($this->container && $this->container->hasScope('request')) {
+        if ($this->container && $this->container->isScopeActive('request')) {
             $request = $this->container->get('request');
         }
         $profile = new Profile($query, $data, $request);
