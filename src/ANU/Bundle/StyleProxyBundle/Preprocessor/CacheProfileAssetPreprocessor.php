@@ -14,7 +14,7 @@ use ANU\Bundle\StyleProxyBundle\Proxy\BaseUrl;
 /**
  * Cache assets when preprocessing a profile.
  */
-class CacheProfileAssets implements Preprocessor
+class CacheProfileAssetPreprocessor implements Preprocessor
 {
     /**
      * @var ResourceMirror
