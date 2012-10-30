@@ -1,6 +1,10 @@
 imports:
     - { resource: config_dev.yml }
 
+parameters:
+    anu_style_proxy.style_server_cache: false
+    anu_style_proxy.asset_server_cache: false
+
 anu_style_proxy:
     test: true
     process_resources: false

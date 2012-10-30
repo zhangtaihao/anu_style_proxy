@@ -14,6 +14,25 @@ class AssetServerControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/images/icons/external.png');
         $this->assertTrue($client->getResponse()->isSuccessful());
+        // Fetch again to trigger fetching a local resource.
+        $client->request('GET', '/images/icons/external.png');
+        $this->assertTrue($client->getResponse()->isSuccessful());
+    }
+
+    /**
+     * Style server response cache is configurable.
+     */
+    public function testCache()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/include.php?part=site');
+        /** @var $response \Symfony\Component\HttpFoundation\Response */
+        $response = $client->getResponse();
+        $this->assertNotEmpty($response->headers->getCacheControlDirective('public'));
+        $client = static::createClient(array('environment' => 'test2'));
+        $client->request('GET', '/include.php?part=site');
+        $response = $client->getResponse();
+        $this->assertFalse($response->headers->hasCacheControlDirective('public'));
     }
 
     /**
