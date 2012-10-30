@@ -3,6 +3,7 @@
 namespace ANU\Bundle\StyleProxyBundle\Tests\Proxy\Profile;
 
 use ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfilePreprocess;
+use ANU\Bundle\StyleProxyBundle\Proxy\Profile\Profile;
 use ANU\Bundle\StyleProxyBundle\Tests\Proxy\Profile\Fixtures\ProfilePreprocess as TestProfilePreprocess;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DependencyInjection\Container;
@@ -33,5 +34,21 @@ class ProfilePreprocessTest extends WebTestCase
             'd' => array(),
         ));
         $this->assertEquals(array('c', 'a', 'd', 'b'), $info);
+    }
+
+    /**
+     * A profile preprocess handler preprocesses a profile using registered preprocessors.
+     *
+     * @depends testCreate
+     */
+    public function testPreprocess()
+    {
+        $container = $this->createClient(array('environment' => 'test2'))->getContainer();
+        $preprocess = new ProfilePreprocess($container, array(
+            'anu_style_proxy.test_profile_preprocessor' => array(),
+        ));
+        $profile = new Profile(array('test' => 'value'), array());
+        $preprocess->preprocess($profile);
+        $this->assertEquals('preprocess', $profile->get('test_profile_preprocessor'));
     }
 }

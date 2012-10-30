@@ -1,5 +1,6 @@
 parameters:
     anu_style_proxy.test_profile_listener.class: ANU\Bundle\StyleProxyBundle\Tests\Proxy\Profile\Fixtures\TestProfileListener
+    anu_style_proxy.test_profile_preprocessor.class: ANU\Bundle\StyleProxyBundle\Tests\Proxy\Profile\Fixtures\TestProfilePreprocessor
 
 services:
     anu_style_proxy.test_profile_listener:
@@ -12,3 +13,7 @@ services:
         arguments: [ test_profile_subscriber ]
         tags:
             - { name: anu_style_proxy.profile_subscriber }
+    anu_style_proxy.test_profile_preprocessor:
+        class: %anu_style_proxy.test_profile_preprocessor.class%
+        tags:
+            - { name: anu_style_proxy.profile_preprocessor }
