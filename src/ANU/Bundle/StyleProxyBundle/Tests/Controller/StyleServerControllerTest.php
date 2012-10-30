@@ -14,6 +14,8 @@ class StyleServerControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/include.php?part=site');
         $this->assertTrue($client->getResponse()->isSuccessful());
+        $client->request('GET', '/include.php?part=json');
+        $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
     /**
