@@ -44,8 +44,12 @@ class ANUStyleProxyExtension extends Extension
         $loader->load('style_server.yml');
 
         // Use 'process_resources' as default parameter value.
-        if (!$container->hasParameter('anu_style_proxy.preprocess_styles')) {
-            $container->setParameter('anu_style_proxy.preprocess_styles', $config['process_resources']);
+        $parameter = 'anu_style_proxy.preprocess_styles';
+        if (!$container->hasParameter($parameter)) {
+            $container->setParameter($parameter, $config['process_resources']);
+        }
+        if ($container->getParameter($parameter)) {
+            $loader->load('preprocess_styles.yml');
         }
     }
 
