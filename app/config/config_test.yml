@@ -4,6 +4,7 @@ imports:
 anu_style_proxy:
     test: true
     process_resources: true
+    style_server_base: http://localhost
 
 framework:
     test: ~
