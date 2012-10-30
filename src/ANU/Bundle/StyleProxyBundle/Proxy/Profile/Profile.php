@@ -11,10 +11,12 @@ class Profile
 {
     protected $query;
     protected $data;
+    protected $request;
 
-    public function __construct(array $query, $jsonData)
+    public function __construct(array $query, $jsonData, Request $requestContext = null)
     {
         $this->query = $query;
+        $this->request = $requestContext;
 
         if (is_string($jsonData)) {
             $this->data = json_decode($jsonData, true);
@@ -98,8 +100,11 @@ class Profile
     /**
      * Creates a base URL wrapper based on this profile.
      */
-    public function createBaseUrl($baseUrl)
+    public function createBaseUrl($baseUrl = NULL)
     {
+        if (!isset($baseUrl) && isset($this->request)) {
+            $baseUrl = $this->request->getUriForPath('');
+        }
         $profileUrl = $this->getSiteVariable('https') ? 'https://localhost' : 'http://localhost';
         $dummyProfileRequest = Request::create($profileUrl);
         return BaseUrl::create($dummyProfileRequest, $baseUrl);

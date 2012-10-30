@@ -3,6 +3,7 @@
 namespace ANU\Bundle\StyleProxyBundle\Tests\Proxy\Profile;
 
 use ANU\Bundle\StyleProxyBundle\Proxy\Profile\Profile;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProfileTest extends \PHPUnit_Framework_TestCase
 {
@@ -149,6 +150,20 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
         ));
         $url = $profile->createBaseUrl('http://localhost')->getUrl();
         $this->assertEquals('https://localhost', $url);
+    }
+
+    /**
+     * Profile creates a base URL from its state and a request context.
+     *
+     * @depends testCreateArray
+     * @depends testCreateBaseUrl
+     */
+    public function testCreateBaseUrlWithContext()
+    {
+        $request = Request::create('http://styleproxy');
+        $profile = new Profile(array(), array(), $request);
+        $url = $profile->createBaseUrl()->getUrl();
+        $this->assertEquals('http://styleproxy', $url);
     }
 
     /**
