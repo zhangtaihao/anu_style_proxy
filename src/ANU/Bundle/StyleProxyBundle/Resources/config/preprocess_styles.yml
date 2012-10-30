@@ -1,6 +1,7 @@
 parameters:
     anu_style_proxy.preprocess_profile_styles_listener.class: ANU\Bundle\StyleProxyBundle\EventListener\PreprocessProfileStylesListener
     anu_style_proxy.profile_preprocess.class: ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfilePreprocess
+    anu_style_proxy.aggregate_style_preprocessor.class: ANU\Bundle\StyleProxyBundle\Preprocessor\AggregateStylePreprocessor
 
 services:
     anu_style_proxy.preprocess_profile_styles_listener:
@@ -13,3 +14,9 @@ services:
         class: %anu_style_proxy.profile_preprocess.class%
         # The second argument is a collection of tagged preprocessors compiled in RegisterProfilePreprocessorsPass.
         arguments: [ @service_container, [] ]
+    anu_style_proxy.aggregate_style_preprocessor:
+        class: %anu_style_proxy.aggregate_style_preprocessor.class%
+        calls:
+            - [ setAggregator, [ @orbt_style_mirror.css.aggregator ] ]
+        tags:
+            - { name: anu_style_proxy.profile_preprocessor }
