@@ -46,13 +46,11 @@ class CacheProfileAssetPreprocessor implements Preprocessor
      */
     public function preprocess(Profile $profile)
     {
-        if (isset($this->backendStyleBase) && isset($this->styleBase)) {
-            // Derive URL from parameters.
-            $backendBaseUrl = $profile->createBaseUrl($this->backendStyleBase)->getUrl();
-            $baseUrl = $profile->createBaseUrl($this->styleBase)->getUrl();
+        // Derive URL from parameters.
+        $backendBaseUrl = $profile->createBaseUrl($this->backendStyleBase)->getUrl();
+        $baseUrl = $profile->createBaseUrl($this->styleBase)->getUrl();
 
-            $this->preprocessAssetUrls($profile, $backendBaseUrl, $baseUrl);
-        }
+        $this->preprocessAssetUrls($profile, $backendBaseUrl, $baseUrl);
     }
 
     /**
