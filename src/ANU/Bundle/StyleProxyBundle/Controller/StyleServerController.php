@@ -31,7 +31,7 @@ class StyleServerController extends Controller
         if (!isset($include)) {
             throw $this->createNotFoundException();
         }
-        $response = Response::create($include);
+        $response = Response::create($include, 200, array('Content-Type' => 'text/plain'));
 
         // Cache response.
         if ($this->cacheMaxAge) {
