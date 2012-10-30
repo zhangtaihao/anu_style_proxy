@@ -46,8 +46,7 @@ class ProfilePreprocess
             return ($a['priority'] < $b['priority']) ? -1 : 1;
         });
         // Return ordered servcice IDs.
-        $preprocessors = array_map(function ($info) { return $info['id']; }, $preprocessorInfo);
-        return array_filter($preprocessors);
+        return array_keys($preprocessorInfo);
     }
 
     /**
