@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Orbt\Bundle\ResourceMirrorBundle\OrbtResourceMirrorBundle(),
+            new Orbt\Bundle\StyleMirrorBundle\OrbtStyleMirrorBundle(),
             new ANU\Bundle\StyleProxyBundle\ANUStyleProxyBundle(),
         );
 
