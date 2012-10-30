@@ -16,6 +16,14 @@ class BaseUrl
     protected $unschemedBaseUrl;
 
     /**
+     * Creates a base URL statically.
+     */
+    public static function create(Request $request, $baseUrl = null)
+    {
+        return new static($request, $baseUrl);
+    }
+
+    /**
      * Wraps a base URL.
      *
      * @param Request $request
