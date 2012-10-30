@@ -65,7 +65,7 @@ class AggregateStylePreprocessor implements Preprocessor
             // TODO Filter with Assetic.
 
             // Save to profile.
-            $resource = $this->mirror->materialize($aggregateResource);
+            $resource = $this->mirror->store($aggregateResource);
             $link = $this->getLinkFromResource($resource, $baseUrl);
             $profile->set('css_arr', array($link));
         }
