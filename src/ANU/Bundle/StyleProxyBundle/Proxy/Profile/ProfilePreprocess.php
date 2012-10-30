@@ -34,7 +34,7 @@ class ProfilePreprocess
     {
         // First add priority differential to pin the current order.
         $increment = $delta = 0.01 / count($preprocessorInfo);
-        foreach ($preprocessorInfo as $id => $preprocessor) {
+        foreach ($preprocessorInfo as $preprocessor) {
             $preprocessorInfo += array(
                 'priority' => $increment,
             );
@@ -45,7 +45,8 @@ class ProfilePreprocess
             return ($a['priority'] < $b['priority']) ? -1 : 1;
         });
         // Return ordered servcice IDs.
-        return array_keys($preprocessorInfo);
+        $preprocessors = array_map(function ($info) { return $info['id']; }, $preprocessorInfo);
+        return array_filter($preprocessors);
     }
 
     /**
