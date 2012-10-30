@@ -3,6 +3,7 @@
 namespace ANU\Bundle\StyleProxyBundle\Proxy\Profile;
 
 use Doctrine\Common\Cache\Cache;
+use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use ANU\Bundle\StyleProxyBundle\Exception\ProfileNotFoundException;
 use ANU\Bundle\StyleProxyBundle\Exception\ProfileNotCachedException;
@@ -11,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Handler for creating and processing profiles and retrieving them from cache.
  */
-class ProfileHandler
+class ProfileHandler extends ContainerAware
 {
     /**
      * Application cache service.
@@ -90,7 +91,11 @@ class ProfileHandler
      */
     public function createProfile(array $query, $data, $cache = true)
     {
-        $profile = new Profile($query, $data);
+        $request = null;
+        if ($this->container->hasScope('request')) {
+            $request = $this->container->get('request');
+        }
+        $profile = new Profile($query, $data, $request);
 
         // Dispatch profile create event to process profile.
         if ($this->dispatcher) {

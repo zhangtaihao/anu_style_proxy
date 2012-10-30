@@ -24,3 +24,4 @@ services:
         calls:
             - [ setCacheLifetime, [ %anu_style_proxy.profile_cache_lifetime% ] ]
             - [ setEventDispatcher, [ @event_dispatcher ] ]
+            - [ setContainer, [ @service_container ] ]
