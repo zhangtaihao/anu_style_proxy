@@ -16,7 +16,10 @@ services:
         arguments: [ @service_container, [] ]
     anu_style_proxy.aggregate_style_preprocessor:
         class: %anu_style_proxy.aggregate_style_preprocessor.class%
-        calls:
-            - [ setAggregator, [ @orbt_style_mirror.css.aggregator ] ]
+        arguments:
+            - @orbt_resource_mirror.mirror
+            - @orbt_style_mirror.css.aggregator
+            - %anu_style_proxy.backend_style_base%
+            - %anu_style_proxy.style_base%
         tags:
             - { name: anu_style_proxy.profile_preprocessor }
