@@ -36,12 +36,22 @@ class AssetServerControllerTest extends WebTestCase
     }
 
     /**
-     * Asset server controller redirects an asset request if not caching.
+     * Asset server controller resource action redirects an asset request if not caching.
      */
     public function testResourceRedirect()
     {
         $client = static::createClient(array('environment' => 'test2'));
         $client->request('GET', '/images/icons/external.png');
+        $this->assertTrue($client->getResponse()->isRedirect());
+    }
+
+    /**
+     * Asset server controller redirects a unrecognised request even if caching.
+     */
+    public function testUnrecognizedRedirect()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/some/unrecognized/request');
         $this->assertTrue($client->getResponse()->isRedirect());
     }
 }
