@@ -1,8 +1,0 @@
-parameters:
-    anu_style_proxy.asset_manager_controller.class: ANU\Bundle\StyleProxyBundle\Controller\AssetManagerController
-
-services:
-    anu_style_proxy.asset_manager_controller:
-        class: %anu_style_proxy.asset_manager_controller.class%
-        calls:
-            - [ setContainer, [ @service_container ] ]

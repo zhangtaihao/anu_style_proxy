@@ -1,0 +1,23 @@
+imports:
+    - { resource: config_dev.yml }
+
+parameters:
+    anu_style_proxy.style_server_cache: false
+    anu_style_proxy.asset_server_cache: false
+
+anu_style_proxy:
+    test: true
+    process_resources: false
+    style_server_base: http://localhost
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+#swiftmailer:
+#    disable_delivery: true

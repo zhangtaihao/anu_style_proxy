@@ -20,12 +20,12 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new ANU\Bundle\StyleProxyBundle\ANUStyleProxyBundle(),
-            new Orbt\Bundle\ResourceHandlerBundle\OrbtResourceHandlerBundle(),
             new Orbt\Bundle\ResourceMirrorBundle\OrbtResourceMirrorBundle(),
+            new Orbt\Bundle\StyleMirrorBundle\OrbtStyleMirrorBundle(),
+            new ANU\Bundle\StyleProxyBundle\ANUStyleProxyBundle(),
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        if (in_array($this->getEnvironment(), array('dev', 'test', 'test2'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

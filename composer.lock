@@ -1,5 +1,5 @@
 {
-    "hash": "94b46d7ad03c7511eb46fd2274ff52db",
+    "hash": "95eb1b46c69cd4f23e43799fb17656f7",
     "packages": [
         {
             "name": "doctrine/common",
@@ -266,6 +266,178 @@
             "keywords": [
                 "database",
                 "orm"
+            ]
+        },
+        {
+            "name": "guzzle/common",
+            "version": "dev-master",
+            "target-dir": "Guzzle/Common",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/guzzle/common.git",
+                "reference": "v3.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/guzzle/common/zipball/v3.0.2",
+                "reference": "v3.0.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/event-dispatcher": "2.1.*"
+            },
+            "time": "1351140919",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Common": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Common libraries used by Guzzle",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "event",
+                "exception",
+                "common",
+                "collection"
+            ]
+        },
+        {
+            "name": "guzzle/http",
+            "version": "dev-master",
+            "target-dir": "Guzzle/Http",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/guzzle/http.git",
+                "reference": "v3.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/guzzle/http/zipball/v3.0.2",
+                "reference": "v3.0.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "guzzle/common": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/stream": "self.version"
+            },
+            "time": "1350344320",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Http": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "HTTP libraries used by Guzzle",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "curl",
+                "http",
+                "http client",
+                "client",
+                "Guzzle"
+            ]
+        },
+        {
+            "name": "guzzle/parser",
+            "version": "dev-master",
+            "target-dir": "Guzzle/Parser",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/guzzle/parser.git",
+                "reference": "v3.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/guzzle/parser/zipball/v3.0.2",
+                "reference": "v3.0.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "time": "1350344312",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Parser": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Interchangeable parsers used by Guzzle",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "http",
+                "url",
+                "message",
+                "cookie",
+                "URI Template"
+            ]
+        },
+        {
+            "name": "guzzle/stream",
+            "version": "dev-master",
+            "target-dir": "Guzzle/Stream",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/stream",
+                "reference": "v3.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/guzzle/stream/zipball/v3.0.2",
+                "reference": "v3.0.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "guzzle/common": "self.version"
+            },
+            "time": "1350344312",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Stream": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle stream wrapper component",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "stream",
+                "Guzzle",
+                "component"
             ]
         },
         {
@@ -685,7 +857,6 @@
             "require": {
                 "php": ">=5.0"
             },
-            "time": "1329902120",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -708,7 +879,165 @@
             "keywords": [
                 "css",
                 "minify"
-            ]
+            ],
+            "time": "1329902120"
+        },
+        {
+            "name": "orbt/resource-mirror",
+            "version": "dev-master",
+            "target-dir": "Orbt/ResourceMirror",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/orbt/ResourceMirror.git",
+                "reference": "d4e885b4b6e4271ddd334561a478e9f537b63401"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/orbt/ResourceMirror/zipball/d4e885b4b6e4271ddd334561a478e9f537b63401",
+                "reference": "d4e885b4b6e4271ddd334561a478e9f537b63401",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/event-dispatcher": ">=2.0.0,<2.2-dev"
+            },
+            "time": "1351518319",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Orbt\\ResourceMirror\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taihao Zhang",
+                    "email": "jason@zth.me"
+                }
+            ],
+            "description": "Resource Mirror is a library for mirroring webpage resources in a local directory for serving over the web as a mirror.",
+            "homepage": "http://github.com/orbt/ResourceMirror"
+        },
+        {
+            "name": "orbt/resource-mirror-bundle",
+            "version": "dev-master",
+            "target-dir": "Orbt/Bundle/ResourceMirrorBundle",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/orbt/OrbtResourceMirrorBundle.git",
+                "reference": "977fda2b77b386cd992e8cc702c84c6ec3caecca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/orbt/OrbtResourceMirrorBundle/zipball/977fda2b77b386cd992e8cc702c84c6ec3caecca",
+                "reference": "977fda2b77b386cd992e8cc702c84c6ec3caecca",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "orbt/resource-mirror": "dev-master"
+            },
+            "time": "1351607751",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Orbt\\Bundle\\ResourceMirrorBundle\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taihao Zhang",
+                    "email": "jason@zth.me"
+                }
+            ],
+            "description": "Basic Symfony dependency injection bundle for the Resource Mirror library.",
+            "homepage": "http://github.com/orbt/OrbtResourceMirrorBundle"
+        },
+        {
+            "name": "orbt/style-mirror",
+            "version": "dev-master",
+            "target-dir": "Orbt/StyleMirror",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/orbt/StyleMirror.git",
+                "reference": "e0a3de3deddd995e23dd07e1664d54a192675bd9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/orbt/StyleMirror/zipball/e0a3de3deddd995e23dd07e1664d54a192675bd9",
+                "reference": "e0a3de3deddd995e23dd07e1664d54a192675bd9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "orbt/resource-mirror": "dev-master",
+                "symfony/event-dispatcher": ">=2.0.0,<2.2-dev"
+            },
+            "time": "1351603478",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Orbt\\StyleMirror\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taihao Zhang",
+                    "email": "jason@zth.me"
+                }
+            ],
+            "description": "The style mirror provides a library of components using the Resource Mirror (orbt/resource-mirror) to optimize style resources and mirror assets on a local server.",
+            "homepage": "http://github.com/orbt/StyleMirror"
+        },
+        {
+            "name": "orbt/style-mirror-bundle",
+            "version": "dev-master",
+            "target-dir": "Orbt/Bundle/StyleMirrorBundle",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/orbt/OrbtStyleMirrorBundle.git",
+                "reference": "87c3af809149b4dbfe2d6c24840fa65eb5aad208"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/orbt/OrbtStyleMirrorBundle/zipball/87c3af809149b4dbfe2d6c24840fa65eb5aad208",
+                "reference": "87c3af809149b4dbfe2d6c24840fa65eb5aad208",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "orbt/style-mirror": "dev-master"
+            },
+            "time": "1351608192",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Orbt\\Bundle\\StyleMirrorBundle\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taihao Zhang",
+                    "email": "jason@zth.me"
+                }
+            ],
+            "description": "Symfony dependency injection bundle for the Style Mirror library.",
+            "homepage": "http://github.com/orbt/OrbtStyleMirrorBundle"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -1268,6 +1597,10 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "liip/doctrine-cache-bundle": 20,
-        "natxet/cssmin": 20
+        "natxet/cssmin": 20,
+        "orbt/resource-mirror": 20,
+        "orbt/resource-mirror-bundle": 20,
+        "orbt/style-mirror": 20,
+        "orbt/style-mirror-bundle": 20
     }
 }

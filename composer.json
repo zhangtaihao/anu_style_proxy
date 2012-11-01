@@ -19,7 +19,12 @@
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
         "liip/doctrine-cache-bundle": "dev-master",
-        "natxet/CssMin": "dev-master"
+        "natxet/CssMin": "dev-master",
+        "guzzle/http": ">=3.0.0",
+        "orbt/resource-mirror": "dev-master",
+        "orbt/resource-mirror-bundle": "dev-master",
+        "orbt/style-mirror": "dev-master",
+        "orbt/style-mirror-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

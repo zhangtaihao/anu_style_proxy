@@ -1,174 +1,93 @@
-Symfony Standard Edition
-========================
+ANU Style Proxy
+===============
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+The ANU Style Proxy is an application used to set up a separate style server as
+a proxy for the central Webstyle server. It is built on the Symfony Standard
+Edition (http://symfony.com).
 
-This document contains information on how to download, install, and start
-using Symfony. For a more detailed explanation, see the [Installation][1]
-chapter of the Symfony Documentation.
 
-1) Installing the Standard Edition
-----------------------------------
+Requirements
+------------
 
-When it comes to installing the Symfony Standard Edition, you have the
-following options.
+To install this package, the following requirements must be met:
 
-### Use Composer (*recommended*)
+* Web server (Apache 2+ or Nginx)
+* PHP 5.3.4 (5.3.8 or higher is recommended, but 5.3.16 is not supported)
+* The PHP fileinfo extension
 
-As Symfony uses [Composer][2] to manage its dependencies, the recommended way
-to create a new project is to use it.
+Additionally, PHP should be configured with `allow_url_fopen = On` (php.ini).
 
-If you don't have Composer yet, download it following the instructions on
-http://getcomposer.org/ or just run the following command:
-
-    curl -s https://getcomposer.org/installer | php
-
-Then, use the `create-project` command to generate a new Symfony application:
-
-    php composer.phar create-project symfony/framework-standard-edition path/to/install
-
-Composer will install Symfony and all its dependencies under the
-`path/to/install` directory.
-
-### Download an Archive File
-
-To quickly test Symfony, you can also download an [archive][3] of the Standard
-Edition and unpack it somewhere under your web server root directory.
-
-If you downloaded an archive "without vendors", you also need to install all
-the necessary dependencies. Download composer (see above) and run the
-following command:
-
-    php composer.phar install
-
-2) Checking your System Configuration
--------------------------------------
-
-Before starting coding, make sure that your local system is properly
-configured for Symfony.
-
-Execute the `check.php` script from the command line:
+Finally, to check system configuration, execute the `check.php` script from the
+command line:
 
     php app/check.php
 
-Access the `config.php` script from a browser:
+Reported errors and warnings in mandatory requirements should be fixed before
+continuing. Optional recommendations may be ignored, although the following
+should be installed for performance:
 
-    http://localhost/path/to/symfony/app/web/config.php
+* PHP-XML extension
+* PHP accelerator (e.g. APC)
 
-If you get any warnings or recommendations, fix them before moving on.
 
-3) Browsing the Demo Application
---------------------------------
+Setting up
+----------
 
-Congratulations! You're now ready to use Symfony.
+Once the application is deployed in a directory, a web server should be set up
+to serve the application `web/` folder on a URL. Furthermore, all nonexistent
+paths should be rewritten to `web/app.php` for the application to serve.
 
-From the `config.php` page, click the "Bypass configuration and go to the
-Welcome page" link to load up your first Symfony page.
+Example Apache configuration (assuming the application is deployed in
+`/var/anu_style_proxy`):
 
-You can also use a web-based configurator by clicking on the "Configure your
-Symfony Application online" link of the `config.php` page.
+```
+<VirtualHost *:80>
+    ServerName styleproxy.example.com
+    DocumentRoot /var/anu_style_proxy/web
 
-To see a real-live Symfony page in action, access the following page:
+    <Directory "/var/anu_style_proxy/web">
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
 
-    web/app_dev.php/demo/hello/Fabien
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteRule ^(.*)$ app.php [QSA,L]
+        </IfModule>
+    </Directory>
+</VirtualHost>
+```
 
-4) Getting started with Symfony
--------------------------------
+Note that the above configuration does not cover serving the proxy over HTTPS.
 
-This distribution is meant to be the starting point for your Symfony
-applications, but it also contains some sample code that you can learn from
-and play with.
+An example on how to set up Nginx can be found at:
 
-A great way to start learning Symfony is via the [Quick Tour][4], which will
-take you through all the basic features of Symfony2.
+    http://wiki.nginx.org/Symfony
 
-Once you're feeling good, you can move onto reading the official
-[Symfony2 book][5].
 
-A default bundle, `AcmeDemoBundle`, shows you Symfony2 in action. After
-playing with it, you can remove it by following these steps:
+Configuration
+-------------
 
-  * delete the `src/Acme` directory;
+The application configuration directory is `app/config`. To begin configuring
+the application, duplicate `parameters.yml.dist` to `parameters.yml` and read
+the description on each parameter.
 
-  * remove the routing entries referencing AcmeBundle in
-    `app/config/routing_dev.yml`;
+The application requires that the `web/mirror` directory be writable by the web
+server. The directory is used to store locally cached assets (if the
+`process_resources` parameter is set to true). To bypass PHP altogether for
+these static assets (and for a major performance boost), configure the web
+server to rewrite asset paths into the mirror directory. For example:
 
-  * remove the AcmeBundle from the registered bundles in `app/AppKernel.php`;
+```
+    RewriteCond %{DOCUMENT_ROOT}/mirror%{REQUEST_URI} -f
+    RewriteRule ^(.*)$ mirror/$1 [L]
+```
 
-  * remove the `web/bundles/acmedemo` directory;
+To use these with the previous example setup, place these lines just after
+`RewriteEngine On`.
 
-  * remove the `security.providers`, `security.firewalls.login` and
-    `security.firewalls.secured_area` entries in the `security.yml` file or
-    tweak the security configuration to fit your needs.
+Finally, the `app/cache` and `app/logs` directories must be writable for the
+application to work.
 
-What's inside?
----------------
+For more information on how to resolve common issues encountered setting up
+Symfony applications, please visit:
 
-The Symfony Standard Edition is configured with the following defaults:
-
-  * Twig is the only configured template engine;
-
-  * Doctrine ORM/DBAL is configured;
-
-  * Swiftmailer is configured;
-
-  * Annotations for everything are enabled.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
-    library
-
-  * [**JMSSecurityExtraBundle**][13] - Allows security to be added via
-    annotations
-
-  * [**JMSDiExtraBundle**][14] - Adds more powerful dependency injection
-    features
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][15] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **AcmeDemoBundle** (in dev/test env) - A demo bundle with some example
-    code
-
-Enjoy!
-
-[1]:  http://symfony.com/doc/2.1/book/installation.html
-[2]:  http://getcomposer.org/
-[3]:  http://symfony.com/download
-[4]:  http://symfony.com/doc/2.1/quick_tour/the_big_picture.html
-[5]:  http://symfony.com/doc/2.1/index.html
-[6]:  http://symfony.com/doc/2.1/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  http://symfony.com/doc/2.1/book/doctrine.html
-[8]:  http://symfony.com/doc/2.1/book/templating.html
-[9]:  http://symfony.com/doc/2.1/book/security.html
-[10]: http://symfony.com/doc/2.1/cookbook/email.html
-[11]: http://symfony.com/doc/2.1/cookbook/logging/monolog.html
-[12]: http://symfony.com/doc/2.1/cookbook/assetic/asset_management.html
-[13]: http://jmsyst.com/bundles/JMSSecurityExtraBundle/master
-[14]: http://jmsyst.com/bundles/JMSDiExtraBundle/master
-[15]: http://symfony.com/doc/2.1/bundles/SensioGeneratorBundle/index.html
+    http://symfony.com/doc/current/book/installation.html

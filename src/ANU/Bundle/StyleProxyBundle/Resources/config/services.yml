@@ -1,13 +1,22 @@
 parameters:
-    anu_style_proxy.cache.class: ANU\Bundle\StyleProxyBundle\Proxy\Cache
     anu_style_proxy.default_controller.class: ANU\Bundle\StyleProxyBundle\Controller\DefaultController
+    anu_style_proxy.base_url.class: ANU\Bundle\StyleProxyBundle\Proxy\BaseUrl
     anu_style_proxy.cache_id: liip_doctrine_cache.ns.default
     anu_style_proxy.placeholder_message: "You have reached a style proxy."
+    anu_style_proxy.backend_style_base: ~
+    anu_style_proxy.backend_style_include: include.php
+    anu_style_proxy.style_base: ~
 
 services:
-    anu_style_proxy.cache:
-        class: %anu_style_proxy.cache.class%
     anu_style_proxy.default_controller:
         class: %anu_style_proxy.default_controller.class%
         calls:
             - [ setContainer, [ @service_container ] ]
+    anu_style_proxy.base_url:
+        class: %anu_style_proxy.base_url.class%
+        arguments: [ @request, %anu_style_proxy.style_base% ]
+        scope: request
+    anu_style_proxy.backend_base_url:
+        class: %anu_style_proxy.base_url.class%
+        arguments: [ @request, %anu_style_proxy.backend_style_base% ]
+        scope: request

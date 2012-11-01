@@ -1,0 +1,29 @@
+parameters:
+    anu_style_proxy.preprocess_profile_styles_listener.class: ANU\Bundle\StyleProxyBundle\EventListener\PreprocessProfileStylesListener
+    anu_style_proxy.profile_preprocess.class: ANU\Bundle\StyleProxyBundle\Proxy\Profile\ProfilePreprocess
+    anu_style_proxy.aggregate_style_preprocessor.class: ANU\Bundle\StyleProxyBundle\Preprocessor\AggregateStylePreprocessor
+    anu_style_proxy.style_filter_processor.class: ANU\Bundle\StyleProxyBundle\Preprocessor\Assetic\StyleFilterProcessor
+    anu_style_proxy.style_filters: []
+
+services:
+    anu_style_proxy.preprocess_profile_styles_listener:
+        class: %anu_style_proxy.preprocess_profile_styles_listener.class%
+        arguments: [ @anu_style_proxy.profile_preprocess ]
+        tags:
+            - { name: anu_style_proxy.profile_subscriber }
+    anu_style_proxy.profile_preprocess:
+        class: %anu_style_proxy.profile_preprocess.class%
+        # The second argument is a collection of tagged preprocessors compiled in RegisterProfilePreprocessorsPass.
+        arguments: [ @service_container, [] ]
+    anu_style_proxy.aggregate_style_preprocessor:
+        class: %anu_style_proxy.aggregate_style_preprocessor.class%
+        arguments:
+            - @orbt_resource_mirror.mirror
+            - @orbt_style_mirror.css.aggregator
+            - %anu_style_proxy.backend_style_base%
+            - %anu_style_proxy.style_base%
+        tags:
+            - { name: anu_style_proxy.profile_preprocessor }
+    anu_style_proxy.style_filter_processor:
+        class: %anu_style_proxy.style_filter_processor.class%
+        arguments: [ @assetic.filter_manager, [] ]

@@ -3,9 +3,10 @@
 namespace ANU\Bundle\StyleProxyBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -22,20 +23,50 @@ class ANUStyleProxyExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        // Load style server.
-        if (in_array($config['proxy_mode'], array('style', 'combined'))) {
-            $loader->load('style_server.yml');
+        if (!empty($config['test'])) {
+            $loader->load('test.yml');
         }
 
-        // Load asset server.
+        $container->setParameter('anu_style_proxy.backend_style_base', $config['backend_style_server']);
+        if (!empty($config['style_server_base'])) {
+            $container->setParameter('anu_style_proxy.style_base', $config['style_server_base']);
+        }
+
+        $this->registerStyleServerConfiguration($config, $container, $loader);
+        $this->registerAssetServerConfiguration($config, $container, $loader);
+    }
+
+    private function registerStyleServerConfiguration($config, ContainerBuilder $container, YamlFileLoader $loader)
+    {
+        $loader->load('style_server.yml');
+
+        // Use 'process_resources' as default parameter value.
+        $parameter = 'anu_style_proxy.preprocess_styles';
+        if (!$container->hasParameter($parameter)) {
+            $container->setParameter($parameter, $config['process_resources']);
+        }
+        if ($container->getParameter($parameter)) {
+            $loader->load('preprocess_styles.yml');
+            if (!empty($config['style_filters'])) {
+                $container->setParameter('anu_style_proxy.style_filters', $config['style_filters']);
+            }
+        }
+    }
+
+    private function registerAssetServerConfiguration($config, ContainerBuilder $container, YamlFileLoader $loader)
+    {
         $loader->load('asset_server.yml');
 
-        // Load asset manager.
-        if (in_array($config['proxy_mode'], array('style', 'combined'))) {
-            $loader->load('asset_manager.yml');
+        // Use 'process_resources' as default parameter value.
+        $parameter = 'anu_style_proxy.cache_backend_assets';
+        if (!$container->hasParameter($parameter)) {
+            $container->setParameter($parameter, $config['process_resources']);
+        }
+        if ($container->getParameter($parameter)) {
+            $loader->load('cache_assets.yml');
         }
     }
 }

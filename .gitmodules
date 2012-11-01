@@ -1,9 +1,0 @@
-[submodule "src/Orbt/ResourceManager"]
-	path = src/Orbt/ResourceManager
-	url = git://github.com/orbt/ResourceManager.git
-[submodule "src/Orbt/Bundle/ResourceMirrorBundle"]
-	path = src/Orbt/Bundle/ResourceMirrorBundle
-	url = git://github.com/orbt/OrbtResourceMirrorBundle.git
-[submodule "src/Orbt/Bundle/ResourceHandlerBundle"]
-	path = src/Orbt/Bundle/ResourceHandlerBundle
-	url = git://github.com/orbt/OrbtResourceHandlerBundle.git
