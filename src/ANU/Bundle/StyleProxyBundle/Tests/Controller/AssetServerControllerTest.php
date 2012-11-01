@@ -46,6 +46,16 @@ class AssetServerControllerTest extends WebTestCase
     }
 
     /**
+     * Asset server controller resource action redirects a unsupported resource.
+     */
+    public function testRedirectUnsupported()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/3/scripts/anu-common.js');
+        $this->assertTrue($client->getResponse()->isRedirect());
+    }
+
+    /**
      * Asset server controller redirects a unrecognised request even if caching.
      */
     public function testUnrecognizedRedirect()
