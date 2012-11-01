@@ -3,6 +3,8 @@
 namespace ANU\Bundle\StyleProxyBundle\Proxy;
 
 use Orbt\ResourceMirror\ResourceMirror;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Orbt\ResourceMirror\Exception\MaterializeException;
 use ANU\Bundle\StyleProxyBundle\Exception\UnsupportedResourceException;
 use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,7 +48,12 @@ class AssetServer
             $mimeType = MimeTypeGuesser::getInstance()->guess($realPath);
         }
         else {
-            $resource = $this->mirror->materialize($resourceRequest);
+            try {
+                $resource = $this->mirror->materialize($resourceRequest);
+            }
+            catch (MaterializeException $e) {
+                throw new NotFoundHttpException();
+            }
             $content = $resource->getContent();
             $mimeType = MimeTypeGuesser::getInstance()->guess($resource->getRealPath());
         }
