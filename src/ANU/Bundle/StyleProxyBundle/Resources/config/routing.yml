@@ -9,3 +9,8 @@ anu_style_proxy_asset_server:
     defaults: { _controller: anu_style_proxy.asset_server_controller:resourceAction }
     requirements:
         path: "\d+/.+|images/.+|style_.+\.css"
+anu_style_proxy_asset_redirect:
+    pattern:  /{path}
+    defaults: { _controller: anu_style_proxy.asset_server_controller:redirectAction }
+    requirements:
+        path: ".+"

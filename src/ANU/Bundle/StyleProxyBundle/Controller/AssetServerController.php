@@ -5,6 +5,7 @@ namespace ANU\Bundle\StyleProxyBundle\Controller;
 use ANU\Bundle\StyleProxyBundle\Proxy\AssetServer;
 use ANU\Bundle\StyleProxyBundle\Proxy\BaseUrl;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class AssetServerController extends Controller
 {
@@ -48,8 +49,18 @@ class AssetServerController extends Controller
         }
         // Redirect to backend.
         else {
-            $url = rtrim($this->backendBaseUrl->getUrl(), '/').'/'.$path;
-            return $this->redirect($url);
+            return $this->forward('anu_style_proxy.asset_server_controller:redirectAction', array(
+                'path' => $path,
+            ));
         }
+    }
+
+    /**
+     * @Cache(maxage="86400")
+     */
+    public function redirectAction($path)
+    {
+        $url = rtrim($this->backendBaseUrl->getUrl(), '/').'/'.$path;
+        return $this->redirect($url, 301);
     }
 }
