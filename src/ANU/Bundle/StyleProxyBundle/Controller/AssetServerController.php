@@ -3,6 +3,7 @@
 namespace ANU\Bundle\StyleProxyBundle\Controller;
 
 use ANU\Bundle\StyleProxyBundle\Proxy\AssetServer;
+use ANU\Bundle\StyleProxyBundle\Exception\UnsupportedResourceException;
 use ANU\Bundle\StyleProxyBundle\Proxy\BaseUrl;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -36,23 +37,25 @@ class AssetServerController extends Controller
         if ($this->has('anu_style_proxy.asset_server')) {
             /** @var $server AssetServer */
             $server = $this->get('anu_style_proxy.asset_server');
-            $response = $server->getResource($request);
+            try {
+                $response = $server->getResource($request);
 
-            // Cache response.
-            if ($this->cacheMaxAge) {
-                $response->setPublic();
-                $response->setMaxAge($this->cacheMaxAge);
-                $response->headers->addCacheControlDirective('must-revalidate', true);
+                // Cache response.
+                if ($this->cacheMaxAge) {
+                    $response->setPublic();
+                    $response->setMaxAge($this->cacheMaxAge);
+                    $response->headers->addCacheControlDirective('must-revalidate', true);
+                }
+
+                return $response;
             }
+            catch (UnsupportedResourceException $e) {}
+        }
 
-            return $response;
-        }
-        // Redirect to backend.
-        else {
-            return $this->forward('anu_style_proxy.asset_server_controller:redirectAction', array(
-                'path' => $path,
-            ));
-        }
+        // Redirect to backend by default.
+        return $this->forward('anu_style_proxy.asset_server_controller:redirectAction', array(
+            'path' => $path,
+        ));
     }
 
     /**

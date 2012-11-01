@@ -3,6 +3,7 @@
 namespace ANU\Bundle\StyleProxyBundle\Proxy;
 
 use Orbt\ResourceMirror\ResourceMirror;
+use ANU\Bundle\StyleProxyBundle\Exception\UnsupportedResourceException;
 use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser;
 use Symfony\Component\HttpFoundation\Response;
 use Orbt\ResourceMirror\Resource\GenericResource;
@@ -34,7 +35,10 @@ class AssetServer
      */
     public function getResource(Request $request)
     {
-        $resourceRequest = new GenericResource(substr($request->getPathInfo(), 1));
+        $path = substr($request->getPathInfo(), 1);
+        $path = $this->checkResourcePath($path);
+
+        $resourceRequest = new GenericResource($path);
 
         if ($this->mirror->exists($resourceRequest)) {
             $realPath = realpath($this->mirror->getDirectory().'/'.$resourceRequest->getPath());
@@ -50,5 +54,17 @@ class AssetServer
         return Response::create($content, 200, array(
             'Content-Type' => $mimeType,
         ));
+    }
+
+    /**
+     * Checks the resource path.
+     */
+    protected function checkResourcePath($path)
+    {
+        if (substr($path, -3) == '.js') {
+            throw new UnsupportedResourceException('Retrieving JavaScript resources is not supported.');
+        }
+
+        return $path;
     }
 }
