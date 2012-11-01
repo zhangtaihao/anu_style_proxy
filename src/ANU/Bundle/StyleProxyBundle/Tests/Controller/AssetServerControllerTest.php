@@ -64,4 +64,14 @@ class AssetServerControllerTest extends WebTestCase
         $client->request('GET', '/some/unrecognized/request');
         $this->assertTrue($client->getResponse()->isRedirect());
     }
+
+    /**
+     * Asset server controller returns not found if an asset to be retrieve cannot be materialized.
+     */
+    public function testResourceNotFound()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/images/notfound');
+        $this->assertTrue($client->getResponse()->isNotFound());
+    }
 }
