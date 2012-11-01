@@ -24,6 +24,14 @@ class StyleServerController extends Controller
     {
         $request = $this->getRequest();
 
+        // Render status check message if style request is empty.
+        if (is_null($request->getQueryString())) {
+            $response = Response::create();
+            // Enable daily checks.
+            $response->setMaxAge(86400);
+            return $response;
+        }
+
         /** @var $styleServer StyleServer */
         $styleServer = $this->get('anu_style_proxy.style_server');
 
